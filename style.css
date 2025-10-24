@@ -1,54 +1,315 @@
-:root{
-  --bg:#f6f9fc;
-  --primary:#e94b3c; /* warm charity red */
-  --accent:#ffcc66;
-  --muted:#6b7280;
-  --container:1200px;
+/* ==================================== */
+/* 1. CSS VARIABLES (Design Tokens)    */
+/* ==================================== */
+:root {
+  /* Colors */
+  --color-bg: #f6f9fc; /* Light background */
+  --color-primary: #e94b3c; /* Warm charity red (main action color) */
+  --color-accent: #ffcc66; /* Secondary accent color */
+  --color-muted: #6b7280; /* Text for secondary/less emphasis content */
+  --color-text-dark: #0f1724; /* Main dark text color */
+  --color-heading: #061227; /* Darker text for main headings */
+  --color-white: #fff;
+  
+  /* Layout */
+  --layout-container-max-width: 1200px;
+  --layout-padding-sides: 1rem;
+  
+  /* Borders & Shadows */
+  --border-color-light: rgba(15, 23, 36, 0.04);
+  --border-color-subtle: rgba(6, 18, 39, 0.06);
+  --shadow-card-light: 0 10px 30px rgba(2, 6, 23, 0.04);
+  --shadow-card-heavy: 0 10px 30px rgba(2, 6, 23, 0.06);
+  --shadow-stat: 0 8px 20px rgba(2, 6, 23, 0.04);
 }
-*{box-sizing:border-box}
-html,body{height:100%;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;color:#0f1724;background:var(--bg);margin:0}
-.container{max-width:var(--container);margin:0 auto;padding:0 1rem}
-#particle-bg{position:fixed;inset:0;z-index:0;pointer-events:none}
 
-/* NAV */
-.nav{position:sticky;top:0;z-index:30;background:linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,255,255,0.35));backdrop-filter: blur(6px);border-bottom:1px solid rgba(15,23,36,0.04)}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:1rem 0}
-.brand{font-weight:700;color:var(--primary)}
-.nav-links{list-style:none;display:flex;gap:1rem;align-items:center}
-.nav-links a{color:#0f1724;text-decoration:none;padding:0.5rem 0.6rem;border-radius:6px}
-.nav-links a.cta{background:var(--primary);color:#fff;padding:0.45rem 0.9rem}
+/* ==================================== */
+/* 2. BASE & UTILITY STYLES             */
+/* ==================================== */
 
-/* HERO */
-.hero{min-height:80vh;display:flex;align-items:center;z-index:5;position:relative;padding:3.5rem 0}
-.hero-inner{display:grid;grid-template-columns:1fr 420px;gap:2.5rem;align-items:center}
-.hero-left h1{font-size:2.4rem;margin:0 0 .6rem;color:#061227}
-.lead{color:var(--muted);margin-bottom:1rem}
-.btn{display:inline-block;padding:0.6rem 1rem;border-radius:8px;text-decoration:none;border:0;cursor:pointer;font-weight:600}
-.btn.primary{background:var(--primary);color:#fff}
-.btn.outline{background:transparent;border:2px solid rgba(6,18,39,0.06)}
-.hero-right .card-illustration{background:linear-gradient(180deg,#fff,rgba(255,255,255,0.85));padding:2rem;border-radius:14px;box-shadow:0 10px 30px rgba(2,6,23,0.06);display:flex;align-items:center;justify-content:center}
+/* Reset and Global Setup */
+* {
+  box-sizing: border-box; /* Standardize box model */
+}
 
-/* SECTIONS */
-.section{padding:3.2rem 0}
-.about p{color:var(--muted);max-width:70ch}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.2rem;margin-top:1rem}
-.card{background:#fff;padding:1.6rem;border-radius:12px;box-shadow:0 10px 30px rgba(2,6,23,0.04)}
-.stats{display:flex;gap:1.6rem;flex-wrap:wrap;margin-top:1.2rem}
-.stat{background:#fff;padding:1rem 1.2rem;border-radius:10px;min-width:160px;text-align:center;box-shadow:0 8px 20px rgba(2,6,23,0.04)}
-.donate-inner{display:grid;grid-template-columns:1fr 360px;gap:1.4rem;align-items:start}
-.donate-card{background:#fff;padding:1.6rem;border-radius:12px}
-.donate-amt{padding:.6rem 1rem;margin-right:.5rem;border-radius:8px;border:1px solid rgba(6,18,39,0.06);background:transparent;cursor:pointer}
-.btn.big{padding:0.85rem 1.2rem;border-radius:10px}
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+  color: var(--color-text-dark);
+  background: var(--color-bg);
+}
 
-/* FOOTER */
-.footer{padding:1.2rem 0;margin-top:2rem;background:transparent;border-top:1px solid rgba(6,18,39,0.04);position:relative;z-index:10}
-.footer-inner{display:flex;justify-content:space-between;align-items:center;color:var(--muted);gap:1rem}
-.footer-links a{margin-left:1rem;color:var(--muted);text-decoration:none}
+/* Layout Container */
+.container {
+  max-width: var(--layout-container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--layout-padding-sides);
+}
 
-/* Responsive */
-@media (max-width:900px){
-  .hero-inner{grid-template-columns:1fr}
-  .donate-inner{grid-template-columns:1fr}
-  .nav-links{display:none}
-  .nav-toggle{display:block}
+/* Background/Effect Layer */
+#particle-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none; /* Allows interaction with elements beneath */
+}
+
+/* Typography Helpers */
+.lead {
+  color: var(--color-muted);
+  margin-bottom: 1rem;
+}
+
+/* ==================================== */
+/* 3. BUTTONS & FORMS                   */
+/* ==================================== */
+
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  border: 0;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.btn.primary {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.btn.outline {
+  background: transparent;
+  border: 2px solid var(--border-color-subtle);
+  color: var(--color-text-dark);
+}
+
+.btn.big {
+  padding: 0.85rem 1.2rem;
+  border-radius: 10px;
+}
+
+/* Donate Specific Inputs (for amount selection) */
+.donate-amt {
+  padding: 0.6rem 1rem;
+  margin-right: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color-subtle);
+  background: transparent;
+  cursor: pointer;
+}
+
+/* ==================================== */
+/* 4. NAVIGATION BAR (NAV)              */
+/* ==================================== */
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  /* Translucent/Blurred effect for elegance */
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.35));
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--border-color-light);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+}
+
+.brand {
+  font-weight: 700;
+  color: var(--color-primary);
+  text-decoration: none; /* Ensure brand link is clean */
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin: 0; /* Remove default list margins */
+  padding: 0; /* Remove default list padding */
+}
+
+.nav-links a {
+  color: var(--color-text-dark);
+  text-decoration: none;
+  padding: 0.5rem 0.6rem;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.nav-links a:hover {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.nav-links a.cta {
+  background: var(--color-primary);
+  color: var(--color-white);
+  padding: 0.45rem 0.9rem;
+}
+
+/* Toggle button hidden by default for desktop */
+.nav-toggle {
+  display: none;
+}
+
+/* ==================================== */
+/* 5. HERO SECTION                      */
+/* ==================================== */
+
+.hero {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  z-index: 5;
+  position: relative;
+  padding: 3.5rem 0;
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1fr 420px; /* Content on left, illustration on right */
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.hero-left h1 {
+  font-size: 2.4rem;
+  margin: 0 0 0.6rem;
+  color: var(--color-heading);
+}
+
+/* Illustration Card Styling */
+.hero-right .card-illustration {
+  background: linear-gradient(180deg, var(--color-white), rgba(255, 255, 255, 0.85));
+  padding: 2rem;
+  border-radius: 14px;
+  box-shadow: var(--shadow-card-heavy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ==================================== */
+/* 6. MAIN CONTENT SECTIONS             */
+/* ==================================== */
+
+.section {
+  padding: 3.2rem 0; /* Standard vertical spacing for sections */
+}
+
+/* About Section Specifics */
+.about p {
+  color: var(--color-muted);
+  max-width: 70ch; /* Readability constraint */
+}
+
+/* Grid Layout for Features/Content Blocks */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1rem;
+}
+
+/* General Card Style */
+.card {
+  background: var(--color-white);
+  padding: 1.6rem;
+  border-radius: 12px;
+  box-shadow: var(--shadow-card-light);
+}
+
+/* Stats Group */
+.stats {
+  display: flex;
+  gap: 1.6rem;
+  flex-wrap: wrap;
+  margin-top: 1.2rem;
+}
+
+/* Individual Stat Block */
+.stat {
+  background: var(--color-white);
+  padding: 1rem 1.2rem;
+  border-radius: 10px;
+  min-width: 160px;
+  text-align: center;
+  box-shadow: var(--shadow-stat);
+}
+
+/* Donate Section Layout */
+.donate-inner {
+  display: grid;
+  grid-template-columns: 1fr 360px; /* Content on left, donation form on right */
+  gap: 1.4rem;
+  align-items: start;
+}
+
+.donate-card {
+  /* Inherits general .card styling where needed, but specified for clarity */
+  background: var(--color-white);
+  padding: 1.6rem;
+  border-radius: 12px;
+}
+
+/* ==================================== */
+/* 7. FOOTER                            */
+/* ==================================== */
+
+.footer {
+  padding: 1.2rem 0;
+  margin-top: 2rem;
+  background: transparent;
+  border-top: 1px solid var(--border-color-light);
+  position: relative;
+  z-index: 10;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--color-muted);
+  gap: 1rem;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.footer-links a {
+  margin-left: 1rem;
+  color: var(--color-muted);
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  color: var(--color-primary);
+}
+
+/* ==================================== */
+/* 8. MEDIA QUERIES (Responsive Design) */
+/* ==================================== */
+
+@media (max-width: 900px) {
+  /* Adjust main grids to single column on tablet/mobile */
+  .hero-inner,
+  .donate-inner {
+    grid-template-columns: 1fr;
+  }
+  
+  /* Hide desktop navigation and show mobile toggle */
+  .nav-links {
+    display: none;
+  }
+  
+  .nav-toggle {
+    display: block;
+  }
 }
