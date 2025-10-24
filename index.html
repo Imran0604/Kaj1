@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Charity Foundation</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <!-- tsParticles -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
+</head>
+<body>
+  <!-- Particle background -->
+  <div id="particle-bg"></div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="brand">Humanity First Foundation</div>
+      <ul class="nav-links">
+        <li><a href="#about">Home</a></li>
+        <li><a href="#about">Campaigns</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Impact</a></li>
+        <li><a href="#impact">Contact</a></li>
+        <li><a href="#donate" class="cta">Donate</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Toggle menu">☰</button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="container hero-inner">
+      <div class="hero-left">
+        <h1>Give hope. Change a life.</h1>
+        <p class="lead">We connect donors with meaningful projects — education, healthcare, and community support.</p>
+        <div class="hero-cta">
+          <a href="#donate" class="btn primary">Donate Now</a>
+          <a href="#about" class="btn outline">Learn More</a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <!-- Placeholder illustration — replace with your Figma asset -->
+        <div class="card-illustration">
+          <svg viewBox="0 0 200 200" class="illu">
+            <circle cx="100" cy="100" r="80" fill="rgba(255,255,255,0.06)"/>
+            <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="14" fill="#fff">Your Image</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Home -->
+  <section id="home" class="section home">
+    <div class="container">
+      <h2>About HelpingHands</h2>
+      <p>HelpingHands is a nonprofit focused on creating lasting change through education, healthcare and community programs. We partner with local leaders to make donations go where they matter most.</p>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="section about">
+    <div class="container">
+      <h2>Humanity First Foundation</h2>
+      <p>Humanity First Foundation is a nonprofit focused on creating lasting change through education, healthcare and community programs. We partner with local leaders to make donations go where they matter most.</p>
+    </div>
+  </section>
+
+  <!-- Programs / Services -->
+  <section id="services" class="section services">
+    <div class="container">
+      <h2>Our Programs</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Education</h3>
+          <p>Scholarships, school supplies, and learning centers for children.</p>
+        </article>
+        <article class="card">
+          <h3>Healthcare</h3>
+          <p>Medical camps, vaccinations and emergency relief.</p>
+        </article>
+        <article class="card">
+          <h3>Community</h3>
+          <p>Livelihood training, clean water and sustainable projects.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Impact -->
+  <section id="impact" class="section impact">
+    <div class="container">
+      <h2>Our Impact</h2>
+      <div class="stats">
+        <div class="stat"><strong>3,200+</strong><span>Lives impacted</span></div>
+        <div class="stat"><strong>120+</strong><span>Projects completed</span></div>
+        <div class="stat"><strong>95%</strong><span>Donor satisfaction</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Donate -->
+  <section id="donate" class="section donate">
+    <div class="container donate-inner">
+      <div class="donate-card">
+        <h2>Make a Difference Today</h2>
+        <p>Choose an amount and help change a life.</p>
+        <div class="donate-options">
+          <button class="donate-amt">৳ 200</button>
+          <button class="donate-amt">৳ 500</button>
+          <button class="donate-amt">৳ 1000</button>
+        </div>
+        <button class="btn primary big">Donate Now</button>
+      </div>
+      <div class="donate-info">
+        <h3>Why donate to us?</h3>
+        <p>Transparent funds, local partners and measurable outcomes — your contribution is used responsibly.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>© <span id="year"></span> HelpingHands</div>
+      <div class="footer-links">
+        <a href="#">Privacy</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
