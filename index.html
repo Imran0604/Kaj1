@@ -5,12 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Humanity First Foundation</title>
   <link rel="stylesheet" href="style.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- JS -->
+  <script src="main.js" defer></script>
 </head>
 <body>
 
   <!-- Navigation -->
   <header>
     <h1>Humanity First Foundation</h1>
+    <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
     <nav>
       <a href="#home">Home</a>
       <a href="#programs">Programs</a>
@@ -25,9 +31,11 @@
       <a href="#care-orphans">Care for Orphans</a>
       <a href="#faith-based">Faith-Based Giving</a>
       <a href="#projects">Projects</a>
+      <a href="#where-we-work">Where We Work</a>
       <a href="#about">About</a>
       <a href="#get-involved">Get Involved</a>
       <a href="#contact">Contact</a>
+      <a href="#ways-to-give" class="donate-btn">Donate</a>
     </nav>
   </header>
 
@@ -57,7 +65,30 @@
     <h2>Ways to Give</h2>
     <p>Your kindness makes a real difference — choose your way to give. Explore various giving options that match your values and create lasting change.</p>
     <h3>Monthly Sustainer Hope Partners: Join Our Monthly Giving Program</h3>
-    <p>Become a monthly supporter and keep the spirit of Ramadan alive throughout the year. Choose a cause that touches your heart and make a lasting difference.</p>
+    <p>Ramadan may have ended, but your impact doesn’t have to. Families in Gaza still go hungry. Orphans seek care. Students dream of an education. Many still lack access to clean water.</p>
+    <p>Become a monthly supporter and keep the spirit of Ramadan alive throughout the year. Choose a cause that touches your heart — emergency aid, orphan support, education, or clean water — and make a lasting difference.</p>
+    <div class="plans">
+      <div class="plan-card">
+        <h4>$15/mo</h4>
+        <p>Hot Meals</p>
+        <button class="donate-btn">Give Monthly</button>
+      </div>
+      <div class="plan-card">
+        <h4>$30/mo</h4>
+        <p>Clean Water</p>
+        <button class="donate-btn">Give Monthly</button>
+      </div>
+      <div class="plan-card">
+        <h4>$50/mo</h4>
+        <p>Orphan Support</p>
+        <button class="donate-btn">Give Monthly</button>
+      </div>
+      <div class="plan-card">
+        <h4>$100/mo</h4>
+        <p>Emergency Relief</p>
+        <button class="donate-btn">Give Monthly</button>
+      </div>
+    </div>
     <img src="images/ways-to-give.jpg" alt="Ways to Give">
   </section>
 
@@ -66,6 +97,7 @@
     <h2>Rapid Response & Emergency Relief</h2>
     <p>In times of crisis, every moment counts. HFF’s Rapid Response teams act swiftly to deliver life-saving assistance to families affected by war, displacement, or natural disasters.</p>
     <p>Your generosity ensures that no family is forgotten in moments of hardship—bringing them safety, dignity, and compassion.</p>
+    <a class="donate-btn" href="#projects">View All Projects</a>
     <img src="images/rapid-response.jpg" alt="Rapid Response">
   </section>
 
@@ -130,7 +162,47 @@
       <li>Ukraine War Relief</li>
       <li>Gaza Emergency Appeal</li>
     </ul>
+    <div class="cards">
+      <div class="card">
+        <h4>Homes & Hope Aid</h4>
+        <p>Rebuilding lives with shelter and essentials.</p>
+      </div>
+      <div class="card">
+        <h4>Stand for Humanity</h4>
+        <p>Emergency support in crisis zones.</p>
+      </div>
+      <div class="card">
+        <h4>Aqua Aid Africa</h4>
+        <p>Sustainable water solutions.</p>
+      </div>
+      <div class="card">
+        <h4>Ukraine War Relief</h4>
+        <p>Medical aid and protection.</p>
+      </div>
+      <div class="card">
+        <h4>Gaza Emergency</h4>
+        <p>Food, water, and shelter.</p>
+      </div>
+    </div>
+    <h3>Projects Cover Photos</h3>
+    <div class="gallery">
+      <img src="images/cover1.jpg" alt="Cover 1">
+      <img src="images/cover2.jpg" alt="Cover 2">
+      <img src="images/cover3.jpg" alt="Cover 3">
+      <img src="images/cover4.jpg" alt="Cover 4">
+      <img src="images/cover5.jpg" alt="Cover 5">
+    </div>
     <img src="images/projects.jpg" alt="Projects">
+  </section>
+
+  <!-- Where We Work -->
+  <section id="where-we-work">
+    <h2>Where We Work</h2>
+    <p>Across Gaza, Syria, Yemen, Sudan, Pakistan, Bangladesh, Somalia, Kenya, Indonesia, and beyond — your support restores hope where it’s needed most.</p>
+    <div class="chips">
+      <span>Gaza</span><span>Syria</span><span>Yemen</span><span>Sudan</span><span>Pakistan</span><span>Bangladesh</span><span>Somalia</span><span>Kenya</span><span>Indonesia</span>
+    </div>
+    <img src="images/where-we-work.jpg" alt="Where We Work">
   </section>
 
   <!-- About -->

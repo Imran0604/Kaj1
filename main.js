@@ -1,12 +1,30 @@
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const href = this.getAttribute('href');
+        const isHash = href && href.startsWith('#');
+        if (isHash) e.preventDefault();
+        const target = isHash ? document.querySelector(href) : null;
         if (target) {
             target.scrollIntoView({ behavior: 'smooth' });
         }
+        // Close mobile nav after click
+        const header = document.querySelector('header');
+        const toggle = document.querySelector('.menu-toggle');
+        if (header?.classList.contains('nav-open')) {
+            header.classList.remove('nav-open');
+            toggle?.setAttribute('aria-expanded', 'false');
+        }
     });
+});
+
+// Mobile menu toggle
+const toggleBtn = document.querySelector('.menu-toggle');
+toggleBtn?.addEventListener('click', () => {
+    const header = document.querySelector('header');
+    const expanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+    header.classList.toggle('nav-open');
+    toggleBtn.setAttribute('aria-expanded', (!expanded).toString());
 });
 
 // Simple back-to-top button
@@ -23,6 +41,7 @@ backToTop.style.background = 'linear-gradient(to right, #ff7e5f, #feb47b)';
 backToTop.style.color = '#fff';
 backToTop.style.cursor = 'pointer';
 backToTop.style.display = 'none';
+backToTop.setAttribute('aria-label', 'Back to top');
 document.body.appendChild(backToTop);
 
 backToTop.addEventListener('click', () => {
@@ -36,7 +55,7 @@ window.addEventListener('scroll', () => {
 // Simple image slider for placeholders
 function createSlider(sectionId, images = []) {
     const section = document.getElementById(sectionId);
-    if (!section) return;
+    if (!section || !images.length) return;
 
     const slider = document.createElement('div');
     slider.style.position = 'relative';
@@ -52,7 +71,7 @@ function createSlider(sectionId, images = []) {
     images.forEach(src => {
         const img = document.createElement('img');
         img.src = src;
-        img.alt = 'Placeholder';
+        img.alt = 'Slide image';
         img.style.width = '100%';
         img.style.flexShrink = '0';
         imgContainer.appendChild(img);
@@ -82,7 +101,7 @@ const navLinks = document.querySelectorAll('nav a');
 window.addEventListener('scroll', () => {
     let current = '';
     sections.forEach(section => {
-        const sectionTop = section.offsetTop - 60;
+        const sectionTop = section.offsetTop - 90;
         if (window.scrollY >= sectionTop) {
             current = section.getAttribute('id');
         }
