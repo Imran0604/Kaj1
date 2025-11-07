@@ -1,476 +1,716 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Humani First Foundation - Transforming Lives Through Compassion</title>
-    <link rel="stylesheet" href="styles.css">
-    <!-- Replace fonts with REM -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=REM:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <style>
-        /* Use REM across the site */
-        body {
-            font-family: "REM", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-        }
-        h1, h2, h3, h4, h5, h6,
-        .brand-name,
-        .section-title {
-            font-family: "REM", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-            font-weight: 700;
-        }
-        .section-subtitle {
-            font-family: "REM", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-            font-weight: 400;
-        }
-    </style>
-    <script src="https://js.stripe.com/v3/"></script>
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Humanity First Foundation - Transforming Lives Through Compassion</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: "Rajdhani", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      font-weight: 500;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    .brand-name,
+    .section-title,
+    button {
+      font-family: "Rajdhani", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      font-weight: 700;
+    }
+
+    .section-subtitle {
+      font-family: "Rajdhani", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      font-weight: 500;
+    }
+  </style>
+  <script src="https://js.stripe.com/v3/"></script>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
+
 <body>
-    <!-- Header & Navigation -->
-    <header id="header">
-        <nav class="navbar">
-            <div class="nav-container">
-                <div class="nav-brand">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='18' fill='%232c5aa0'/%3E%3Cpath d='M20 10 L15 20 L20 25 L25 20 Z' fill='white'/%3E%3C/svg%3E" alt="Logo" class="logo">
-                    <span class="brand-name">Humani First Foundation</span>
-                </div>
-                
-                <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Toggle menu">
-                    <span class="hamburger"></span>
-                    <span class="hamburger"></span>
-                    <span class="hamburger"></span>
-                </button>
-                
-                <div class="nav-links" id="navLinks">
-                    <a href="#home" class="nav-link">Home</a>
-                    <a href="#programs" class="nav-link">Programs</a>
-                    <a href="#campaigns" class="nav-link">Campaigns</a>
-                    <a href="#ways-to-give" class="nav-link">Ways To Give</a>
-                    <a href="#projects" class="nav-link">Projects</a>
-                    <a href="#where-we-work" class="nav-link">Where We Work</a>
-                    <a href="#about" class="nav-link">About</a>
-                    <button class="donate-btn-nav" onclick="openDonateModal()">Donate Now</button>
-                </div>
-            </div>
-        </nav>
-    </header>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Transforming Lives Through Compassion</h1>
-            <p>Join us in bringing hope, dignity, and sustainable change to communities worldwide</p>
-            <button class="cta-btn" onclick="openDonateModal()">Make a Difference Today</button>
+  <!-- Header & Navigation -->
+  <header id="header">
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-brand">
+          <img src="images/HFF2(big size).jpg" alt="Logo" class="logo">
         </div>
-    </section>
 
-    <!-- Programs Section -->
-    <section id="programs" class="programs-section">
-        <div class="container">
-            <h2 class="section-title">Our Programs</h2>
-            <p class="section-subtitle">Explore all our programs and learn how we're transforming whole communities by providing sustainable water solutions, brightening children's futures, empowering people with livelihoods, and supporting schools and clinics.</p>
-            
-            <div class="programs-grid">
-                <!-- Rapid Response -->
-                <div class="program-card">
-                    <div class="program-icon">🚨</div>
-                    <h3>Rapid Response & Emergency Relief</h3>
-                    <p>In times of crisis, every moment counts. HFF's Rapid Response teams act swiftly to deliver life-saving assistance to families affected by war, displacement, or natural disasters. From emergency food and clean water to temporary shelter and essential supplies, we stand beside vulnerable communities when they need it most.</p>
-                    <p>Your generosity ensures that no family is forgotten in moments of hardship—bringing them safety, dignity, and compassion. Across Gaza, Syria, Yemen, Sudan, Pakistan, and other regions, your support helps restore hope when it's needed the most.</p>
-                    <button class="program-btn" onclick="viewProjects('emergency')">VIEW ALL PROJECTS</button>
-                </div>
+        <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Toggle menu">
+          <span class="hamburger"></span>
+          <span class="hamburger"></span>
+          <span class="hamburger"></span>
+        </button>
 
-                <!-- Medical Aid -->
-                <div class="program-card">
-                    <div class="program-icon">🏥</div>
-                    <h3>Medical Aid</h3>
-                    <p>Access to healthcare is not a privilege, it is a right. At HFF, we bring medical care to those who would otherwise go without. Through mobile clinics, surgical interventions, and essential medicine distribution, we protect the health and lives of families in crisis.</p>
-                    <p>From cataract and cleft lip surgeries to trauma care and maternal health support, our programs provide both immediate relief and long-term healing. Every treatment is more than medical care, it is dignity restored, independence regained, and hope renewed.</p>
-                    <button class="program-btn" onclick="viewProjects('medical')">VIEW ALL PROJECTS</button>
-                </div>
-
-                <!-- Education -->
-                <div class="program-card">
-                    <div class="program-icon">📚</div>
-                    <h3>Education & Opportunity</h3>
-                    <p>Education is the foundation for ending poverty and creating hope. At HFF, we invest in brighter futures by giving children and youth in refugee camps, conflict zones, and marginalized areas access to quality learning opportunities.</p>
-                    <p>Through scholarships, safe learning centers, vocational programs, and leadership training, we empower young people with the knowledge and skills to build independent, meaningful lives. With a special focus on girls, refugees, and first-generation learners, we strive to ensure that every child has the chance to learn, grow, and succeed.</p>
-                    <button class="program-btn" onclick="viewProjects('education')">VIEW ALL PROJECTS</button>
-                </div>
-
-                <!-- Food Security -->
-                <div class="program-card">
-                    <div class="program-icon">🍽️</div>
-                    <h3>Food Security</h3>
-                    <p>Hunger strips families of their strength, dignity, and hope. At HFF, we fight hunger by providing reliable access to nutritious meals for millions each year. Through emergency food distributions, hot meals, Ramadan packages, and Qurbani shares, we bring essential nourishment to those who need it most.</p>
-                    <p>Our One Ummah, One Plate initiative unites communities through the simple yet powerful act of sharing food. Every meal or food basket goes beyond feeding—it restores dignity, strengthens resilience, and renews faith in a caring Ummah that stands together.</p>
-                    <button class="program-btn" onclick="viewProjects('food')">VIEW ALL PROJECTS</button>
-                </div>
-
-                <!-- Shelter -->
-                <div class="program-card">
-                    <div class="program-icon">🏠</div>
-                    <h3>Shelter & Seasonal Support</h3>
-                    <p>Each season brings new hardships that struggling families cannot face alone. At HFF, we work to protect vulnerable communities from extreme heat, heavy rains, and freezing winters by providing shelter, warm clothing, blankets, and heating essentials in colder months—along with clean water and vital aid during the summer.</p>
-                    <p>Across Morocco, Yemen, Gaza, Pakistan, and Syrian refugee camps, your support offers families safety, comfort, and the reassurance that they are never forgotten, no matter the season.</p>
-                    <button class="program-btn" onclick="viewProjects('shelter')">VIEW ALL PROJECTS</button>
-                </div>
-
-                <!-- Water Infrastructure -->
-                <div class="program-card">
-                    <div class="program-icon">💧</div>
-                    <h3>Water Infrastructure</h3>
-                    <p>Every drop of clean water holds the power to restore health, dignity, and hope for the future. At HFF, we develop and rehabilitate sustainable water systems that bring long-term relief to communities in need.</p>
-                    <p>From Gaza to Bangladesh, Somalia, Sudan, Indonesia, Pakistan, Nepal, Kenya, and beyond, your support funds solar-powered wells, repaired boreholes, and durable water networks. These projects do more than provide drinking water—they prevent disease, reduce the burden on women and children, and help communities flourish.</p>
-                    <button class="program-btn" onclick="viewProjects('water')">VIEW ALL PROJECTS</button>
-                </div>
-
-                <!-- Care for Orphans -->
-                <div class="program-card">
-                    <div class="program-icon">👶</div>
-                    <h3>Care for Orphans</h3>
-                    <p>Caring for orphans means more than providing essentials—it's about giving children the opportunity to grow, learn, and heal. At HFF, we support orphaned children across Palestine, Syria, Kenya, Pakistan, Somalia, Yemen, and beyond with nutritious food, quality education, healthcare, and secure housing.</p>
-                    <p>Every contribution helps restore dignity, inspire hope, and build a future where every child is valued, supported, and given the chance to thrive.</p>
-                    <button class="program-btn" onclick="viewProjects('orphans')">VIEW ALL PROJECTS</button>
-                </div>
-
-                <!-- Faith-Based Giving -->
-                <div class="program-card">
-                    <div class="program-icon">🕌</div>
-                    <h3>Faith-Based Giving</h3>
-                    <p>Faith-driven giving is a meaningful way to fulfill our responsibility toward others. At HFF, we honor Fidya, Kaffarah, and Fitra by turning these contributions into vital, life-saving support. Through your generosity, families receive nourishment, vulnerable individuals gain care, and dignity is restored in areas facing hardship.</p>
-                    <p>Guided by compassion and accountability, these offerings reach communities in Gaza, Syria, Yemen, Sudan, and beyond, bringing hope to those who need it most.</p>
-                    <button class="program-btn" onclick="viewProjects('faith')">VIEW ALL PROJECTS</button>
-                </div>
-            </div>
+        <div class="nav-links" id="navLinks">
+          <a href="#home" class="nav-link" aria-current="page">Home</a>
+          <a href="#programs" class="nav-link">Programs</a>
+          <a href="#campaigns" class="nav-link">Campaigns</a>
+          <a href="#ways-to-give" class="nav-link">Ways To Give</a>
+          <a href="#projects" class="nav-link">Projects</a>
+          <a href="#where-we-work" class="nav-link">Where We Work</a>
+          <a href="#get-involved" class="nav-link">Get Involved</a>
+          <a href="#about" class="nav-link">About</a>
+          <button class="donate-btn-nav" onclick="openDonateModal()">Donate Now</button>
         </div>
-    </section>
 
-    <!-- Campaigns Section -->
-    <section id="campaigns" class="campaigns-section">
-        <div class="container">
-            <h2 class="section-title">Our Campaigns</h2>
-            <p class="section-subtitle">Active campaigns making an immediate impact</p>
-            
-            <div class="campaigns-grid">
-                <div class="campaign-card">
-                    <div class="campaign-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
-                    <div class="campaign-content">
-                        <h3>Stand for Humanity Campaign</h3>
-                        <p>Join us in standing up for those who need it most. Your support brings dignity and hope to families in crisis.</p>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 65%"></div>
-                        </div>
-                        <p class="progress-text">$650,000 raised of $1,000,000</p>
-                        <button class="campaign-btn" onclick="donateToCampaign('stand-for-humanity')">Donate Now</button>
-                    </div>
-                </div>
+        <div class="nav-actions">
+          <button class="icon-btn" onclick="toggleSearch()" aria-label="Search" title="Search">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+            </svg>
+          </button>
 
-                <div class="campaign-card">
-                    <div class="campaign-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
-                    <div class="campaign-content">
-                        <h3>Gaza Emergency Appeal</h3>
-                        <p>Urgent relief for families in Gaza. Every contribution provides food, medical care, and shelter.</p>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 82%"></div>
-                        </div>
-                        <p class="progress-text">$820,000 raised of $1,000,000</p>
-                        <button class="campaign-btn" onclick="donateToCampaign('gaza-appeal')">Donate Now</button>
-                    </div>
-                </div>
+          <button class="icon-btn" onclick="openLogin()" aria-label="Login" title="Login">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </button>
 
-                <div class="campaign-card">
-                    <div class="campaign-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
-                    <div class="campaign-content">
-                        <h3>Aqua Aid Africa</h3>
-                        <p>Building sustainable water solutions across Africa. Clean water transforms entire communities.</p>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 45%"></div>
-                        </div>
-                        <p class="progress-text">$225,000 raised of $500,000</p>
-                        <button class="campaign-btn" onclick="donateToCampaign('aqua-aid-africa')">Donate Now</button>
-                    </div>
-                </div>
-            </div>
+          <button class="icon-btn" onclick="openZakatCalculator()" aria-label="Zakat Calculator"
+            title="Zakat Calculator">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+              <path d="M8 14h.01"></path>
+              <path d="M12 14h.01"></path>
+              <path d="M16 14h.01"></path>
+              <path d="M8 18h.01"></path>
+              <path d="M12 18h.01"></path>
+              <path d="M16 18h.01"></path>
+            </svg>
+          </button>
         </div>
-    </section>
+      </div>
+    </nav>
+  </header>
+  <form class="quick-donate-container">
 
-    <!-- Ways to Give Section -->
-    <section id="ways-to-give" class="ways-to-give-section">
-        <div class="container">
-            <h2 class="section-title">Ways To Give</h2>
-            <p class="section-subtitle">Your kindness makes a real difference — choose your way to give. Your contribution empowers our mission. Explore various giving options that match your values and create lasting change.</p>
-            
-            <div class="giving-options">
-                <!-- Monthly Sustainer -->
-                <div class="giving-card featured">
-                    <div class="giving-icon">💝</div>
-                    <h3>Hope Partners: Monthly Giving Program</h3>
-                    <p>Ramadan may have ended, but your impact doesn't have to. Your generosity during the blessed month changed countless lives — yet the needs remain. Families in Gaza still go hungry. Orphans still seek care. Students still dream of an education. And many still lack access to clean water.</p>
-                    <p><strong>Become a monthly supporter</strong> and keep the spirit of Ramadan alive throughout the year. Choose a cause that touches your heart — whether it's emergency aid, orphan support, education, or clean water — and make a lasting difference with a small monthly contribution.</p>
-                    
-                    <div class="monthly-packages">
-                        <div class="package-option" onclick="openMonthlyDonation()">
-                            <h4>$25/month</h4>
-                            <p>Feeds a family for a week</p>
-                        </div>
-                        <div class="package-option" onclick="openMonthlyDonation()">
-                            <h4>$50/month</h4>
-                            <p>Sponsors a child's education</p>
-                        </div>
-                        <div class="package-option" onclick="openMonthlyDonation()">
-                            <h4>$100/month</h4>
-                            <p>Provides medical care</p>
-                        </div>
-                        <div class="package-option" onclick="openMonthlyDonation()">
-                            <h4>$250/month</h4>
-                            <p>Builds water infrastructure</p>
-                        </div>
-                    </div>
-                    <button class="giving-btn" onclick="openMonthlyDonation()">Become a Hope Partner</button>
-                </div>
-
-                <!-- One-Time Donation -->
-                <div class="giving-card">
-                    <div class="giving-icon">🎁</div>
-                    <h3>One-Time Donation</h3>
-                    <p>Make an immediate impact with a single gift. Your generosity provides urgent relief to those in need right now.</p>
-                    <button class="giving-btn" onclick="openDonateModal()">Give Once</button>
-                </div>
-
-                <!-- Zakat -->
-                <div class="giving-card">
-                    <div class="giving-icon">🕌</div>
-                    <h3>Zakat</h3>
-                    <p>Fulfill your religious obligation while transforming lives. 100% of your Zakat goes directly to those who need it most.</p>
-                    <button class="giving-btn" onclick="openDonateModal('zakat')">Calculate & Give Zakat</button>
-                </div>
-
-                <!-- Sadaqah -->
-                <div class="giving-card">
-                    <div class="giving-icon">✨</div>
-                    <h3>Sadaqah</h3>
-                    <p>Give voluntary charity that brings endless blessings. Every contribution is an investment in the Hereafter.</p>
-                    <button class="giving-btn" onclick="openDonateModal('sadaqah')">Give Sadaqah</button>
-                </div>
-
-                <!-- Fidya & Kaffarah -->
-                <div class="giving-card">
-                    <div class="giving-icon">📿</div>
-                    <h3>Fidya & Kaffarah</h3>
-                    <p>Make amends for missed fasts and broken oaths. Your contribution feeds the hungry and restores spiritual balance.</p>
-                    <button class="giving-btn" onclick="openDonateModal('fidya')">Pay Fidya/Kaffarah</button>
-                </div>
-
-                <!-- Fitra -->
-                <div class="giving-card">
-                    <div class="giving-icon">🌙</div>
-                    <h3>Zakat al-Fitr</h3>
-                    <p>Complete your Ramadan with Zakat al-Fitr. Help families celebrate Eid with dignity and joy.</p>
-                    <button class="giving-btn" onclick="openDonateModal('fitra')">Pay Fitra</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="projects-section">
-        <div class="container">
-            <h2 class="section-title">Featured Projects</h2>
-            
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect fill=%22%234a90e2%22 width=%22400%22 height=%22300%22/></svg>'); background-size: cover;"></div>
-                    <div class="project-content">
-                        <h3>Homes & Hope Aid Project</h3>
-                        <p>Rebuilding lives by providing safe, dignified shelter to displaced families.</p>
-                        <button class="project-btn" onclick="donateToCampaign('homes-hope')">Support This Project</button>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect fill=%22%23e74c3c%22 width=%22400%22 height=%22300%22/></svg>'); background-size: cover;"></div>
-                    <div class="project-content">
-                        <h3>Ukraine War Relief</h3>
-                        <p>Emergency aid for families affected by conflict, providing food, medicine, and shelter.</p>
-                        <button class="project-btn" onclick="donateToCampaign('ukraine-relief')">Support This Project</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Where We Work Section -->
-    <section id="where-we-work" class="where-we-work-section">
-        <div class="container">
-            <h2 class="section-title">Where We Work</h2>
-            <p class="section-subtitle">Bringing hope to communities across the globe</p>
-            
-            <div class="regions-grid">
-                <div class="region-card">🇵🇸 Palestine</div>
-                <div class="region-card">🇸🇾 Syria</div>
-                <div class="region-card">🇾🇪 Yemen</div>
-                <div class="region-card">🇸🇩 Sudan</div>
-                <div class="region-card">🇵🇰 Pakistan</div>
-                <div class="region-card">🇸🇴 Somalia</div>
-                <div class="region-card">🇰🇪 Kenya</div>
-                <div class="region-card">🇧🇩 Bangladesh</div>
-                <div class="region-card">🇮🇩 Indonesia</div>
-                <div class="region-card">🇳🇵 Nepal</div>
-                <div class="region-card">🇲🇦 Morocco</div>
-                <div class="region-card">🇺🇦 Ukraine</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Get Involved Section -->
-    <section id="get-involved" class="get-involved-section">
-        <div class="container">
-            <h2 class="section-title">Get Involved</h2>
-            <p class="section-subtitle">Join our mission to transform lives</p>
-            
-            <div class="involvement-options">
-                <div class="involvement-card">
-                    <h3>Volunteer</h3>
-                    <p>Share your skills and time to make a direct impact in our programs.</p>
-                    <button class="involvement-btn">Learn More</button>
-                </div>
-                <div class="involvement-card">
-                    <h3>Fundraise</h3>
-                    <p>Create your own campaign and inspire others to give.</p>
-                    <button class="involvement-btn">Start a Campaign</button>
-                </div>
-                <div class="involvement-card">
-                    <h3>Partner With Us</h3>
-                    <p>Join forces to multiply our impact and reach more communities.</p>
-                    <button class="involvement-btn">Become a Partner</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about-section">
-        <div class="container">
-            <h2 class="section-title">About Hope For Future</h2>
-            <div class="about-content">
-                <p>Hope For Future (HFF) is dedicated to transforming lives and building sustainable futures for vulnerable communities worldwide. Through compassionate action and strategic partnerships, we deliver essential services in emergency relief, healthcare, education, water infrastructure, and more.</p>
-                <p>Our work is guided by the principles of dignity, accountability, and transparency. We believe every person deserves access to basic necessities and the opportunity to thrive.</p>
-                
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <h3>50+</h3>
-                        <p>Countries Served</p>
-                    </div>
-                    <div class="stat-card">
-                        <h3>2M+</h3>
-                        <p>Lives Impacted</p>
-                    </div>
-                    <div class="stat-card">
-                        <h3>100%</h3>
-                        <p>Donation Policy</p>
-                    </div>
-                    <div class="stat-card">
-                        <h3>15+</h3>
-                        <p>Years of Service</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Hope For Future</h3>
-                    <p>Transforming lives through compassion and sustainable solutions.</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#programs">Programs</a></li>
-                        <li><a href="#campaigns">Campaigns</a></li>
-                        <li><a href="#ways-to-give">Donate</a></li>
-                        <li><a href="#about">About Us</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact</h4>
-                    <p>Email: info@hopeforfuture.org</p>
-                    <p>Phone: +1 (555) 123-4567</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Follow Us</h4>
-                    <div class="social-links">
-                        <a href="#">Facebook</a>
-                        <a href="#">Twitter</a>
-                        <a href="#">Instagram</a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Hope For Future. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Donation Modal -->
-    <div id="donateModal" class="modal">
-        <div class="modal-overlay" onclick="closeDonateModal()"></div>
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeDonateModal()" aria-label="Close">&times;</button>
-            <div class="modal-header">
-                <h2>Make Your Donation</h2>
-                <p>Your generosity transforms lives</p>
-            </div>
-            
-            <div class="modal-body">
-                <div id="googleSignInDiv" class="google-signin-container"></div>
-                <p class="signin-note">Sign in with Google for receipts (optional)</p>
-                
-                <form id="donationForm">
-                    <div class="form-group">
-                        <label>Donation Type</label>
-                        <select id="donationType" class="form-control">
-                            <option value="general">General Donation</option>
-                            <option value="zakat">Zakat</option>
-                            <option value="sadaqah">Sadaqah</option>
-                            <option value="fidya">Fidya/Kaffarah</option>
-                            <option value="fitra">Zakat al-Fitr</option>
-                            <option value="monthly">Monthly Sustainer</option>
-                        </select>
-                    </div>
-
-                    <!-- Removed the amount selection UI. Stripe will handle amount on checkout. -->
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Name (Optional)</label>
-                            <input type="text" id="donorName" class="form-control" placeholder="Your name">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Email (Optional)</label>
-                            <input type="email" id="donorEmail" class="form-control" placeholder="your@email.com">
-                        </div>
-                    </div>
-                    
-                    <button type="button" class="submit-btn" onclick="processDonation()">
-                        <span>Continue to Stripe Checkout</span>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </button>
-                </form>
-            </div>
-        </div>
+    <div class="donate-item currency-picker">
+      <select aria-label="Currency" id="currencySelect">
+        <option value="USD" selected>USD</option>
+        <option value="MYR">MYR</option>
+        <option value="AUD">AUD</option>
+      </select>
     </div>
 
-    <script src="script.js"></script>
+    <div class="donate-item amount-input">
+      <input type="number" placeholder="Amount" aria-label="Donation Amount">
+    </div>
+
+    <div class="donate-item preset-buttons">
+      <button type="button" data-amount="100">$100</button>
+      <button type="button" data-amount="150">$150</button>
+      <button type="button" class="active" data-amount="200">$200</button>
+      <button type="button" data-amount="500">$500</button>
+    </div>
+
+    <div class="donate-item purpose-picker">
+      <select aria-label="Donation Purpose">
+        <option>Gaza Emergency Relief</option>
+        <option>General Fund</option>
+        <option>Emergency Relief</option>
+        <option>Water Projects</option>
+        <option>Medical Aid</option>
+      </select>
+    </div>
+
+    <div class="donate-item payment-icons">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/paypal.svg" alt="PayPal" class="payment-icon">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/visa.svg" alt="Visa" class="payment-icon">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/mastercard.svg" alt="Mastercard"
+        class="payment-icon">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/googlepay.svg" alt="Google Pay" class="payment-icon">
+    </div>
+
+    <button type="submit" class="donate-btn-submit">QUICK DONATE</button>
+
+  </form>
+
+  <!-- Quick Donate Section -->
+  <section id="home" class="quick-donate-section">
+    <div class="container">
+      <div class="quick-donate-grid">
+        <a href="/?form=gaza-hot-meals" class="quick-donate-card">
+          <div class="quick-donate-image">
+            <img src="https://hdfund.org/wp-content/uploads/2025/04/pik.png" alt="Gaza Hot Meals">
+          </div>
+          <div class="quick-donate-label">Gaza Hot Meals</div>
+        </a>
+
+        <a href="/?form=gaza-general-fund" class="quick-donate-card">
+          <div class="quick-donate-image">
+            <img src="https://hdfund.org/wp-content/uploads/2025/04/Copy-of-IMG_2920-300x225.jpeg" alt="Gaza Emergency">
+          </div>
+          <div class="quick-donate-label">Gaza Emergency</div>
+        </a>
+
+        <a href="https://give.hdfund.org/campaign/692775/donate" class="quick-donate-card">
+          <div class="quick-donate-image">
+            <img
+              src="https://hdfund.org/wp-content/uploads/2025/04/WhatsApp-Image-2023-11-10-at-22.00.20-3-300x200.jpeg"
+              alt="Water Projects">
+          </div>
+          <div class="quick-donate-label">Water Projects</div>
+        </a>
+
+        <a href="/?form=Sudan-campaign" class="quick-donate-card">
+          <div class="quick-donate-image">
+            <img
+              src="https://hdfund.org/wp-content/uploads/2025/04/WhatsApp-Image-2024-10-24-at-1.33.44-AM-2-300x200.jpeg"
+              alt="Sudan Emergency">
+          </div>
+          <div class="quick-donate-label">Sudan Emergency</div>
+        </a>
+
+        <a href="/?form=syrian-refugees" class="quick-donate-card">
+          <div class="quick-donate-image">
+            <img src="https://hdfund.org/wp-content/uploads/2025/04/Turkey-7-300x200.webp" alt="Syria Refugees">
+          </div>
+          <div class="quick-donate-label">Syria Refugees</div>
+        </a>
+
+        <a href="/?form=seeds-of-hope" class="quick-donate-card">
+          <div class="quick-donate-image">
+            <img
+              src="https://hdfund.org/wp-content/uploads/2025/04/67c0485a5359b7e3fb62b186_منطقة-الوسط-24-10-2024-وجبات-13-1-300x169.jpeg"
+              alt="Seeds Of Hope">
+          </div>
+          <div class="quick-donate-label">Seeds Of Hope</div>
+        </a>
+
+        <a href="/?form=ramadan-hot-meals" class="quick-donate-card">
+          <div class="quick-donate-image">
+            <img src="https://hdfund.org/wp-content/uploads/2025/04/IMG_4945-300x200.jpg" alt="Hot Meals">
+          </div>
+          <div class="quick-donate-label">Hot Meals</div>
+        </a>
+
+        <a href="/?form=cataract-surgery" class="quick-donate-card">
+          <div class="quick-donate-image">
+            <img src="https://hdfund.org/wp-content/uploads/2025/04/E29A0530-1024x682-1-300x200.jpg"
+              alt="Vision For All">
+          </div>
+          <div class="quick-donate-label">Vision For All</div>
+        </a>
+
+        <a href="https://hdfund.org/zakat-calculator/" class="quick-donate-card">
+          <div class="quick-donate-image">
+            <img src="https://hdfund.org/wp-content/uploads/2025/05/PIK-17-300x187.webp" alt="Zakat Calculator">
+          </div>
+          <div class="quick-donate-label">Zakat Calculator</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Image Slider Section -->
+  <section class="slider-section">
+    <div class="slider-container">
+      <div class="slider-wrapper">
+        <div class="slide active">
+          <img src="images/istockphoto-1127203174-612x612.jpg" alt="Slide 1">
+        </div>
+        <div class="slide">
+          <img src="images/istockphoto-481990146-612x612.jpg" alt="Slide 2">
+        </div>
+        <div class="slide">
+          <img src="images/istockphoto-941191996-612x612.jpg" alt="Slide 3">
+        </div>
+      </div>
+
+      <div class="slider-dots">
+        <span class="dot active" onclick="goToSlide(0)"></span>
+        <span class="dot" onclick="goToSlide(1)"></span>
+        <span class="dot" onclick="goToSlide(2)"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Transforming Lives Through Compassion</h1>
+      <p>Join us in bringing hope, dignity, and sustainable change to communities worldwide</p>
+      <button class="cta-btn" onclick="openDonateModal()">Make a Difference Today</button>
+    </div>
+  </section>
+
+  <!-- Programs Section -->
+  <section id="programs" class="programs-section">
+    <div class="container">
+      <h2 class="section-title">Our Programs</h2>
+      <p class="section-subtitle">Explore all our programs and learn how we're transforming whole communities by
+        providing sustainable water solutions, brightening children's futures, empowering people with livelihoods, and
+        supporting schools and clinics.</p>
+
+      <div class="programs-grid">
+        <!-- Rapid Response -->
+        <div class="program-card">
+          <div class="program-icon">🚨</div>
+          <h3>Rapid Response & Emergency Relief</h3>
+          <p>In times of crisis, every moment counts. HFF's Rapid Response teams act swiftly to deliver life-saving
+            assistance to families affected by war, displacement, or natural disasters. From emergency food and clean
+            water to temporary shelter and essential supplies, we stand beside vulnerable communities when they need it
+            most.</p>
+          <p>Your generosity ensures that no family is forgotten in moments of hardship—bringing them safety, dignity,
+            and compassion. Across Gaza, Syria, Yemen, Sudan, Pakistan, and other regions, your support helps restore
+            hope when it's needed the most.</p>
+          <button class="program-btn" onclick="viewProjects('emergency')">VIEW ALL PROJECTS</button>
+        </div>
+
+        <!-- Medical Aid -->
+        <div class="program-card">
+          <div class="program-icon">🏥</div>
+          <h3>Medical Aid</h3>
+          <p>Access to healthcare is not a privilege, it is a right. At HFF, we bring medical care to those who would
+            otherwise go without. Through mobile clinics, surgical interventions, and essential medicine distribution,
+            we protect the health and lives of families in crisis.</p>
+          <p>From cataract and cleft lip surgeries to trauma care and maternal health support, our programs provide both
+            immediate relief and long-term healing. Every treatment is more than medical care, it is dignity restored,
+            independence regained, and hope renewed.</p>
+          <button class="program-btn" onclick="viewProjects('medical')">VIEW ALL PROJECTS</button>
+        </div>
+
+        <!-- Education -->
+        <div class="program-card">
+          <div class="program-icon">📚</div>
+          <h3>Education & Opportunity</h3>
+          <p>Education is the foundation for ending poverty and creating hope. At HFF, we invest in brighter futures by
+            giving children and youth in refugee camps, conflict zones, and marginalized areas access to quality
+            learning opportunities.</p>
+          <p>Through scholarships, safe learning centers, vocational programs, and leadership training, we empower young
+            people with the knowledge and skills to build independent, meaningful lives. With a special focus on girls,
+            refugees, and first-generation learners, we strive to ensure that every child has the chance to learn, grow,
+            and succeed.</p>
+          <button class="program-btn" onclick="viewProjects('education')">VIEW ALL PROJECTS</button>
+        </div>
+
+        <!-- Food Security -->
+        <div class="program-card">
+          <div class="program-icon">🍽️</div>
+          <h3>Food Security</h3>
+          <p>Hunger strips families of their strength, dignity, and hope. At HFF, we fight hunger by providing reliable
+            access to nutritious meals for millions each year. Through emergency food distributions, hot meals, Ramadan
+            packages, and Qurbani shares, we bring essential nourishment to those who need it most.</p>
+          <p>Our One Ummah, One Plate initiative unites communities through the simple yet powerful act of sharing food.
+            Every meal or food basket goes beyond feeding—it restores dignity, strengthens resilience, and renews faith
+            in a caring Ummah that stands together.</p>
+          <button class="program-btn" onclick="viewProjects('food')">VIEW ALL PROJECTS</button>
+        </div>
+
+        <!-- Shelter -->
+        <div class="program-card">
+          <div class="program-icon">🏠</div>
+          <h3>Shelter & Seasonal Support</h3>
+          <p>Each season brings new hardships that struggling families cannot face alone. At HFF, we work to protect
+            vulnerable communities from extreme heat, heavy rains, and freezing winters by providing shelter, warm
+            clothing, blankets, and heating essentials in colder months—along with clean water and vital aid during the
+            summer.</p>
+          <p>Across Morocco, Yemen, Gaza, Pakistan, and Syrian refugee camps, your support offers families safety,
+            comfort, and the reassurance that they are never forgotten, no matter the season.</p>
+          <button class="program-btn" onclick="viewProjects('shelter')">VIEW ALL PROJECTS</button>
+        </div>
+
+        <!-- Water Infrastructure -->
+        <div class="program-card">
+          <div class="program-icon">💧</div>
+          <h3>Water Infrastructure</h3>
+          <p>Every drop of clean water holds the power to restore health, dignity, and hope for the future. At HFF, we
+            develop and rehabilitate sustainable water systems that bring long-term relief to communities in need.</p>
+          <p>From Gaza to Bangladesh, Somalia, Sudan, Indonesia, Pakistan, Nepal, Kenya, and beyond, your support funds
+            solar-powered wells, repaired boreholes, and durable water networks. These projects do more than provide
+            drinking water—they prevent disease, reduce the burden on women and children, and help communities flourish.
+          </p>
+          <button class="program-btn" onclick="viewProjects('water')">VIEW ALL PROJECTS</button>
+        </div>
+
+        <!-- Care for Orphans -->
+        <div class="program-card">
+          <div class="program-icon">👶</div>
+          <h3>Care for Orphans</h3>
+          <p>Caring for orphans means more than providing essentials—it's about giving children the opportunity to grow,
+            learn, and heal. At HFF, we support orphaned children across Palestine, Syria, Kenya, Pakistan, Somalia,
+            Yemen, and beyond with nutritious food, quality education, healthcare, and secure housing.</p>
+          <p>Every contribution helps restore dignity, inspire hope, and build a future where every child is valued,
+            supported, and given the chance to thrive.</p>
+          <button class="program-btn" onclick="viewProjects('orphans')">VIEW ALL PROJECTS</button>
+        </div>
+
+        <!-- Faith-Based Giving -->
+        <div class="program-card">
+          <div class="program-icon">🕌</div>
+          <h3>Faith-Based Giving</h3>
+          <p>Faith-driven giving is a meaningful way to fulfill our responsibility toward others. At HFF, we honor
+            Fidya, Kaffarah, and Fitra by turning these contributions into vital, life-saving support. Through your
+            generosity, families receive nourishment, vulnerable individuals gain care, and dignity is restored in areas
+            facing hardship.</p>
+          <p>Guided by compassion and accountability, these offerings reach communities in Gaza, Syria, Yemen, Sudan,
+            and beyond, bringing hope to those who need it most.</p>
+          <button class="program-btn" onclick="viewProjects('faith')">VIEW ALL PROJECTS</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Campaigns Section -->
+  <section id="campaigns" class="campaigns-section">
+    <div class="container">
+      <h2 class="section-title">Our Campaigns</h2>
+      <p class="section-subtitle">Active campaigns making an immediate impact</p>
+
+      <div class="campaigns-grid">
+        <div class="campaign-card">
+          <div class="campaign-image" style="background: linear-gradient(135deg, #1A5245 0%, #0B6D47 100%);"></div>
+          <div class="campaign-content">
+            <h3>Stand for Humanity Campaign</h3>
+            <p>Join us in standing up for those who need it most. Your support brings dignity and hope to families in
+              crisis.</p>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 65%"></div>
+            </div>
+            <p class="progress-text">$650,000 raised of $1,000,000</p>
+            <button class="campaign-btn" onclick="donateToCampaign('stand-for-humanity')">Donate Now</button>
+          </div>
+        </div>
+
+        <div class="campaign-card">
+          <div class="campaign-image" style="background: linear-gradient(135deg, #1A5245 0%, #0B6D47 100%);"></div>
+          <div class="campaign-content">
+            <h3>Gaza Emergency Appeal</h3>
+            <p>Urgent relief for families in Gaza. Every contribution provides food, medical care, and shelter.</p>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 82%"></div>
+            </div>
+            <p class="progress-text">$820,000 raised of $1,000,000</p>
+            <button class="campaign-btn" onclick="donateToCampaign('gaza-appeal')">Donate Now</button>
+          </div>
+        </div>
+
+        <div class="campaign-card">
+          <div class="campaign-image" style="background: linear-gradient(135deg, #1A5245 0%, #0B6D47 100%);"></div>
+          <div class="campaign-content">
+            <h3>Aqua Aid Africa</h3>
+            <p>Building sustainable water solutions across Africa. Clean water transforms entire communities.</p>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 45%"></div>
+            </div>
+            <p class="progress-text">$225,000 raised of $500,000</p>
+            <button class="campaign-btn" onclick="donateToCampaign('aqua-aid-africa')">Donate Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ways to Give Section -->
+  <section id="ways-to-give" class="ways-to-give-section">
+    <div class="container">
+      <h2 class="section-title">Ways To Give</h2>
+      <p class="section-subtitle">Your kindness makes a real difference — choose your way to give. Your contribution
+        empowers our mission. Explore various giving options that match your values and create lasting change.</p>
+
+      <div class="giving-options">
+        <!-- Monthly Sustainer -->
+        <div class="giving-card featured">
+          <div class="giving-icon">💝</div>
+          <h3>Hope Partners: Monthly Giving Program</h3>
+          <p>Ramadan may have ended, but your impact doesn't have to. Your generosity during the blessed month changed
+            countless lives — yet the needs remain. Families in Gaza still go hungry. Orphans still seek care. Students
+            still dream of an education. And many still lack access to clean water.</p>
+          <p><strong>Become a monthly supporter</strong> and keep the spirit of Ramadan alive throughout the year.
+            Choose a cause that touches your heart — whether it's emergency aid, orphan support, education, or clean
+            water — and make a lasting difference with a small monthly contribution.</p>
+
+          <div class="monthly-packages">
+            <div class="package-option" onclick="openMonthlyDonation()">
+              <h4>$25/month</h4>
+              <p>Feeds a family for a week</p>
+            </div>
+            <div class="package-option" onclick="openMonthlyDonation()">
+              <h4>$50/month</h4>
+              <p>Sponsors a child's education</p>
+            </div>
+            <div class="package-option" onclick="openMonthlyDonation()">
+              <h4>$100/month</h4>
+              <p>Provides medical care</p>
+            </div>
+            <div class="package-option" onclick="openMonthlyDonation()">
+              <h4>$250/month</h4>
+              <p>Builds water infrastructure</p>
+            </div>
+          </div>
+          <button class="giving-btn" onclick="openMonthlyDonation()">Become a Hope Partner</button>
+        </div>
+
+        <!-- One-Time Donation -->
+        <div class="giving-card">
+          <div class="giving-icon">🎁</div>
+          <h3>One-Time Donation</h3>
+          <p>Make an immediate impact with a single gift. Your generosity provides urgent relief to those in need right
+            now.</p>
+          <button class="giving-btn" onclick="openDonateModal()">Give Once</button>
+        </div>
+
+        <!-- Zakat -->
+        <div class="giving-card">
+          <div class="giving-icon">🕌</div>
+          <h3>Zakat</h3>
+          <p>Fulfill your religious obligation while transforming lives. 100% of your Zakat goes directly to those who
+            need it most.</p>
+          <button class="giving-btn" onclick="openDonateModal('zakat')">Calculate & Give Zakat</button>
+        </div>
+
+        <!-- Sadaqah -->
+        <div class="giving-card">
+          <div class="giving-icon">✨</div>
+          <h3>Sadaqah</h3>
+          <p>Give voluntary charity that brings endless blessings. Every contribution is an investment in the Hereafter.
+          </p>
+          <button class="giving-btn" onclick="openDonateModal('sadaqah')">Give Sadaqah</button>
+        </div>
+
+        <!-- Fidya & Kaffarah -->
+        <div class="giving-card">
+          <div class="giving-icon">📿</div>
+          <h3>Fidya & Kaffarah</h3>
+          <p>Make amends for missed fasts and broken oaths. Your contribution feeds the hungry and restores spiritual
+            balance.</p>
+          <button class="giving-btn" onclick="openDonateModal('fidya')">Pay Fidya/Kaffarah</button>
+        </div>
+
+        <!-- Fitra -->
+        <div class="giving-card">
+          <div class="giving-icon">🌙</div>
+          <h3>Zakat al-Fitr</h3>
+          <p>Complete your Ramadan with Zakat al-Fitr. Help families celebrate Eid with dignity and joy.</p>
+          <button class="giving-btn" onclick="openDonateModal('fitra')">Pay Fitra</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="projects-section">
+    <div class="container">
+      <h2 class="section-title">Featured Projects</h2>
+
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-image"
+            style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect fill=%22%234a90e2%22 width=%22400%22 height=%22300%22/></svg>'); background-size: cover;">
+          </div>
+          <div class="project-content">
+            <h3>Homes & Hope Aid Project</h3>
+            <p>Rebuilding lives by providing safe, dignified shelter to displaced families.</p>
+            <button class="project-btn" onclick="donateToCampaign('homes-hope')">Support This Project</button>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-image"
+            style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect fill=%22%23e74c3c%22 width=%22400%22 height=%22300%22/></svg>'); background-size: cover;">
+          </div>
+          <div class="project-content">
+            <h3>Ukraine War Relief</h3>
+            <p>Emergency aid for families affected by conflict, providing food, medicine, and shelter.</p>
+            <button class="project-btn" onclick="donateToCampaign('ukraine-relief')">Support This Project</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Where We Work Section -->
+  <section id="where-we-work" class="where-we-work-section">
+    <div class="container">
+      <h2 class="section-title">Where We Work</h2>
+      <p class="section-subtitle">Bringing hope to communities across the globe</p>
+
+      <div class="regions-grid">
+        <div class="region-card">🇵🇸 Palestine</div>
+        <div class="region-card">🇸🇾 Syria</div>
+        <div class="region-card">🇾🇪 Yemen</div>
+        <div class="region-card">🇸🇩 Sudan</div>
+        <div class="region-card">🇵🇰 Pakistan</div>
+        <div class="region-card">🇸🇴 Somalia</div>
+        <div class="region-card">🇰🇪 Kenya</div>
+        <div class="region-card">🇧🇩 Bangladesh</div>
+        <div class="region-card">🇮🇩 Indonesia</div>
+        <div class="region-card">🇳🇵 Nepal</div>
+        <div class="region-card">🇲🇦 Morocco</div>
+        <div class="region-card">🇺🇦 Ukraine</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Get Involved Section -->
+  <section id="get-involved" class="get-involved-section">
+    <div class="container">
+      <h2 class="section-title">Get Involved</h2>
+      <p class="section-subtitle">Join our mission to transform lives</p>
+
+      <div class="involvement-options">
+        <div class="involvement-card">
+          <h3>Volunteer</h3>
+          <p>Share your skills and time to make a direct impact in our programs.</p>
+          <button class="involvement-btn">Learn More</button>
+        </div>
+        <div class="involvement-card">
+          <h3>Fundraise</h3>
+          <p>Create your own campaign and inspire others to give.</p>
+          <button class="involvement-btn">Start a Campaign</button>
+        </div>
+        <div class="involvement-card">
+          <h3>Partner With Us</h3>
+          <p>Join forces to multiply our impact and reach more communities.</p>
+          <button class="involvement-btn">Become a Partner</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about-section">
+    <div class="container">
+      <h2 class="section-title">About Humanity First Foundation</h2>
+      <div class="about-content">
+        <p>Humanity First Foundation (HDF) is dedicated to transforming lives and building sustainable futures for
+          vulnerable communities worldwide. Through compassionate action and strategic partnerships, we deliver
+          essential services in emergency relief, healthcare, education, water infrastructure, and more.</p>
+        <p>Our work is guided by the principles of dignity, accountability, and transparency. We believe every person
+          deserves access to basic necessities and the opportunity to thrive.</p>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <h3>50+</h3>
+            <p>Countries Served</p>
+          </div>
+          <div class="stat-card">
+            <h3>2M+</h3>
+            <p>Lives Impacted</p>
+          </div>
+          <div class="stat-card">
+            <h3>100%</h3>
+            <p>Donation Policy</p>
+          </div>
+          <div class="stat-card">
+            <h3>15+</h3>
+            <p>Years of Service</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Humanity First Foundation</h3>
+          <p>Transforming lives through compassion and sustainable solutions.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#programs">Programs</a></li>
+            <li><a href="#campaigns">Campaigns</a></li>
+            <li><a href="#ways-to-give">Donate</a></li>
+            <li><a href="#about">About Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <p>Email: info@hopeforfuture.org</p>
+          <p>Phone: +1 (555) 123-4567</p>
+        </div>
+        <div class="footer-section">
+          <h4>Follow Us</h4>
+          <div class="social-links">
+            <a href="#">Facebook</a>
+            <a href="#">Twitter</a>
+            <a href="#">Instagram</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Humanity First Foundation. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Donation Modal -->
+  <div id="donateModal" class="modal">
+    <div class="modal-overlay" onclick="closeDonateModal()"></div>
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeDonateModal()" aria-label="Close">&times;</button>
+      <div class="modal-header">
+        <h2>Make Your Donation</h2>
+        <p>Your generosity transforms lives</p>
+      </div>
+
+      <div class="modal-body">
+        <div id="googleSignInDiv" class="google-signin-container"></div>
+        <p class="signin-note">Sign in with Google for receipts (optional)</p>
+
+        <form id="donationForm">
+          <div class="form-group">
+            <label>Donation Type</label>
+            <select id="donationType" class="form-control">
+              <option value="general">General Donation</option>
+              <option value="zakat">Zakat</option>
+              <option value="sadaqah">Sadaqah</option>
+              <option value="fidya">Fidya/Kaffarah</option>
+              <option value="fitra">Zakat al-Fitr</option>
+              <option value="monthly">Monthly Sustainer</option>
+            </select>
+          </div>
+
+          <!-- Removed the amount selection UI. Stripe will handle amount on checkout. -->
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Name (Optional)</label>
+              <input type="text" id="donorName" class="form-control" placeholder="Your name">
+            </div>
+
+            <div class="form-group">
+              <label>Email (Optional)</label>
+              <input type="email" id="donorEmail" class="form-control" placeholder="your@email.com">
+            </div>
+          </div>
+
+          <button type="button" class="submit-btn" onclick="processDonation()">
+            <span>Continue to Stripe Checkout</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
+
 </html>

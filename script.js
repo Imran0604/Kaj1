@@ -113,195 +113,83 @@ function initScrollEffects() {
     });
 }
 
-// Toggle Mobile Menu
+/* Nav: mobile toggle */
 function toggleMenu() {
-    const navLinks = document.getElementById('navLinks');
-    navLinks.classList.toggle('active');
+  const nav = document.getElementById('navLinks');
+  if (!nav) return;
+  nav.classList.toggle('open');
 }
 
-// Open Donation Modal (no amount reset)
-function openDonateModal(type = 'general') {
-	const modal = document.getElementById('donateModal');
-	modal.style.display = 'block';
-	document.getElementById('donationType').value = type;
-	document.body.style.overflow = 'hidden';
+/* Modal controls */
+function openDonateModal(type) {
+  const modal = document.getElementById('donateModal');
+  if (modal) modal.classList.add('open');
+  if (type) {
+    const sel = document.getElementById('donationType');
+    if (sel) sel.value = type;
+  }
 }
-
-// Close Donation Modal
 function closeDonateModal() {
-    const modal = document.getElementById('donateModal');
-    modal.style.display = 'none';
-    document.body.style.overflow = 'auto';
+  const modal = document.getElementById('donateModal');
+  if (modal) modal.classList.remove('open');
 }
 
-// Select Amount
-let selectedAmount = null;
-function selectAmount(amount, event) {
-    if (event) {
-        event.preventDefault();
-    }
-    selectedAmount = amount;
-    document.getElementById('customAmount').value = '';
-    
-    // Update button styles
-    document.querySelectorAll('.amount-btn').forEach(btn => {
-        btn.classList.remove('active');
-    });
-    if (event && event.target) {
-        event.target.classList.add('active');
-    }
+/* Section helpers */
+function viewProjects(slug) {
+  // ...existing code...
+  // Fallback: scroll to projects
+  const el = document.getElementById('projects');
+  if (el) el.scrollIntoView({ behavior: 'smooth' });
+}
+function donateToCampaign(campaign) {
+  // ...existing code...
+  openDonateModal();
 }
 
-// Select Monthly Package
-function selectMonthlyPackage(amount) {
-    openDonateModal('monthly');
-    setTimeout(() => {
-        const btns = document.querySelectorAll('.amount-btn');
-        btns.forEach(btn => {
-            if (btn.textContent.includes(`$${amount}`)) {
-                selectedAmount = amount;
-                btn.classList.add('active');
-            }
-        });
-    }, 300);
-}
-
-// Open Monthly Donation
+/* Monthly quick action */
 function openMonthlyDonation() {
-    openDonateModal('monthly');
+  openDonateModal('monthly');
 }
 
-// Donate to Campaign
-function donateToCampaign(campaignId) {
-    openDonateModal('general');
-    sessionStorage.setItem('campaignId', campaignId);
+/* Stripe checkout handoff (replace with your backend endpoint/session) */
+async function processDonation() {
+  try {
+    // Gather simple payload (extend as needed)
+    const type = document.getElementById('donationType')?.value || 'general';
+    const name = document.getElementById('donorName')?.value || '';
+    const email = document.getElementById('donorEmail')?.value || '';
+
+    // Example: call your server to create a Checkout Session
+    // const res = await fetch('/api/checkout', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ type, name, email }) });
+    // const { checkoutUrl } = await res.json();
+    // if (checkoutUrl) { window.location.href = checkoutUrl; return; }
+
+    // Placeholder redirect (replace):
+    const params = new URLSearchParams({ type, name, email });
+    window.location.href = `https://donate.stripe.com/test_12345?${params.toString()}`;
+  } catch (e) {
+    console.error(e);
+    alert('Unable to start checkout. Please try again.');
+  }
 }
 
-// View Projects
-function viewProjects(category) {
-    const projectsSection = document.getElementById('projects');
-    if (projectsSection) {
-        projectsSection.scrollIntoView({ behavior: 'smooth' });
-    }
-}
+/* Optional: close modal on Escape */
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeDonateModal();
+});
 
-// Build Stripe URL with optional prefilled email and reference
-function buildStripeUrl({ email, type, campaign }) {
-	const base = STRIPE_CHECKOUT_URL; // use the fixed alias
-	const url = new URL(base);
-	if (email) url.searchParams.set('prefilled_email', email);
-	url.searchParams.set('client_reference_id', [`type:${type}`, `camp:${campaign}`].join('|'));
-	return url.toString();
-}
-
-// Process Donation - redirect without amount (open only in new tab)
-function processDonation() {
-	const donationType = document.getElementById('donationType').value;
-	const donorName = document.getElementById('donorName').value;
-	const donorEmail = document.getElementById('donorEmail').value;
-	const campaign = sessionStorage.getItem('campaignId') || 'general';
-
-	// Optional local tracking (no amount)
-	const donations = JSON.parse(localStorage.getItem('donationAttempts') || '[]');
-	donations.push({
-		type: donationType,
-		name: donorName || 'Anonymous',
-		email: donorEmail || '',
-		campaign,
-		timestamp: new Date().toISOString()
-	});
-	localStorage.setItem('donationAttempts', JSON.stringify(donations));
-
-	const stripeUrl = buildStripeUrl({
-		email: donorEmail || (googleUser?.email || ''),
-		type: donationType,
-		campaign
-	});
-
-	// Guard against double-trigger
-	if (isNavigatingToStripe) return;
-	isNavigatingToStripe = true;
-
-	// Disable button to prevent double clicks
-	const btn = document.querySelector('#donationForm .submit-btn');
-	if (btn) {
-		btn.disabled = true;
-		btn.style.opacity = '0.7';
-		btn.innerHTML = '<span>Redirecting to Stripe…</span>';
-	}
-
-	// Try to open in new tab/window
-	const newTab = window.open(stripeUrl, '_blank', 'noopener,noreferrer');
-
-	if (newTab) {
-		// Navigation succeeded in new tab
-		closeDonateModal();
-		return;
-	}
-
-	// Popup blocked: restore state and show a clickable fallback link
-	isNavigatingToStripe = false;
-	if (btn) {
-		btn.disabled = false;
-		btn.style.opacity = '1';
-		btn.innerHTML = '<span>Continue to Stripe Checkout</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
-	}
-
-	// Build actionable notification with a manual link
-	const note = document.createElement('div');
-	note.style.cssText = `
-		position: fixed; top: 100px; right: 20px; z-index: 10000;
-		background: #f39c12; color: #1b1b1b; padding: 1rem 1.25rem;
-		border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-		display: flex; gap: .6rem; align-items: center; max-width: 340px;
-	`;
-	note.innerHTML = `
-		<span>Popup blocked. </span>
-		<a href="${stripeUrl}" target="_blank" rel="noopener noreferrer" style="color:#0b62ff; font-weight:600; text-decoration:underline">
-			Open Stripe Checkout
-		</a>
-	`;
-	document.body.appendChild(note);
-	setTimeout(() => note.remove(), 6000);
-}
-
-// Show Notification
-function showNotification(message, type = 'info') {
-    // Remove any existing notification
-    const existingNotification = document.querySelector('.notification');
-    if (existingNotification) {
-        existingNotification.remove();
-    }
-    
-    // Create notification element
-    const notification = document.createElement('div');
-    notification.className = `notification notification-${type}`;
-    notification.textContent = message;
-    
-    const bgColor = type === 'error' ? '#e74c3c' : type === 'success' ? '#27ae60' : '#3498db';
-    
-    notification.style.cssText = `
-        position: fixed;
-        top: 100px;
-        right: 20px;
-        background: ${bgColor};
-        color: white;
-        padding: 1rem 1.5rem;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        z-index: 10000;
-        animation: slideInRight 0.3s ease;
-        font-weight: 500;
-        max-width: 300px;
-    `;
-    
-    document.body.appendChild(notification);
-    
-    setTimeout(() => {
-        notification.style.animation = 'slideOutRight 0.3s ease';
-        setTimeout(() => notification.remove(), 300);
-    }, 3000);
-}
+/* Optional: smooth-scroll for same-page nav links */
+document.addEventListener('click', (e) => {
+  const a = e.target.closest('a[href^="#"]');
+  if (!a) return;
+  const id = a.getAttribute('href')?.slice(1);
+  const target = id && document.getElementById(id);
+  if (target) {
+    e.preventDefault();
+    target.scrollIntoView({ behavior: 'smooth' });
+    history.replaceState(null, '', `#${id}`);
+  }
+});
 
 // Close modal when clicking outside
 window.onclick = function(event) {
@@ -336,7 +224,43 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
+// Image Slider Functionality
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+const dots = document.querySelectorAll('.dot');
+
+function goToSlide(index) {
+  // Remove active class from all slides and dots
+  slides.forEach(slide => slide.classList.remove('active'));
+  dots.forEach(dot => dot.classList.remove('active'));
+  
+  // Add active class to current slide and dot
+  currentSlide = index;
+  slides[currentSlide].classList.add('active');
+  dots[currentSlide].classList.add('active');
+}
+
+function nextSlide() {
+  currentSlide = (currentSlide + 1) % slides.length;
+  goToSlide(currentSlide);
+}
+
+// Auto-advance slides every 5 seconds
+let sliderInterval = setInterval(nextSlide, 5000);
+
+// Pause auto-advance on hover
+const sliderContainer = document.querySelector('.slider-container');
+if (sliderContainer) {
+  sliderContainer.addEventListener('mouseenter', () => {
+    clearInterval(sliderInterval);
+  });
+  
+  sliderContainer.addEventListener('mouseleave', () => {
+    sliderInterval = setInterval(nextSlide, 5000);
+  });
+}
+
 // Initialize page
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Humani First Foundation - Ready');
+    console.log('Humanity First Foundation - Ready');
 });
