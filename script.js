@@ -181,9 +181,61 @@ async function testConnection() {
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', function() {
     initializeStripe();
-    testConnection(); // Test if PHP is accessible
+    testConnection();
+    initializePresetButtons();
+    checkCanceledPayment();
     console.log('Humanity First Foundation - Ready');
 });
+
+// Initialize preset amount buttons
+function initializePresetButtons() {
+    const presetButtons = document.querySelectorAll('.preset-buttons button');
+    const amountInput = document.querySelector('.quick-donate-container input[type="number"]');
+    
+    presetButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Remove active class from all buttons
+            presetButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Add active class to clicked button
+            this.classList.add('active');
+            
+            // Update amount input
+            const amount = this.getAttribute('data-amount');
+            if (amountInput) {
+                amountInput.value = amount;
+            }
+        });
+    });
+    
+    // Also update button states when user types in the input
+    if (amountInput) {
+        amountInput.addEventListener('input', function() {
+            const inputValue = this.value;
+            let matchFound = false;
+            
+            presetButtons.forEach(btn => {
+                const btnAmount = btn.getAttribute('data-amount');
+                if (btnAmount === inputValue) {
+                    btn.classList.add('active');
+                    matchFound = true;
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        });
+    }
+}
+
+// Check for canceled payment parameter
+function checkCanceledPayment() {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('canceled') === 'true') {
+        alert('Donation canceled. No charges were made to your account.');
+        // Remove the canceled parameter from URL
+        window.history.replaceState({}, document.title, window.location.pathname);
+    }
+}
 
 // Handle quick donate form
 async function handleQuickDonate(event) {

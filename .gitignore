@@ -2,3 +2,5 @@
 /vendor
 composer.json
 composer.lock
+error.log
+hdfund.html
