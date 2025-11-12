@@ -231,10 +231,37 @@ function initializePresetButtons() {
 function checkCanceledPayment() {
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('canceled') === 'true') {
-        alert('Donation canceled. No charges were made to your account.');
+        showCancelNotification();
         // Remove the canceled parameter from URL
         window.history.replaceState({}, document.title, window.location.pathname);
     }
+}
+
+// Show cancellation notification
+function showCancelNotification() {
+    const notification = document.createElement('div');
+    notification.className = 'cancel-notification';
+    notification.innerHTML = `
+        <div class="cancel-notification-content">
+            <span class="cancel-icon">ℹ️</span>
+            <div class="cancel-text">
+                <strong>Donation Canceled</strong>
+                <p>No charges were made to your account.</p>
+            </div>
+            <button class="cancel-close" onclick="this.parentElement.parentElement.remove()">×</button>
+        </div>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Trigger animation
+    setTimeout(() => notification.classList.add('show'), 10);
+    
+    // Auto-remove after 5 seconds
+    setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => notification.remove(), 300);
+    }, 5000);
 }
 
 // Handle quick donate form
@@ -416,6 +443,76 @@ style.textContent = `
             transform: translateX(400px);
             opacity: 0;
         }
+    }
+    
+    .cancel-notification {
+        position: fixed;
+        top: -100px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: white;
+        border-left: 4px solid #0b6d47;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        border-radius: 8px;
+        z-index: 10000;
+        transition: top 0.3s ease;
+        max-width: 500px;
+        width: 90%;
+    }
+    
+    .cancel-notification.show {
+        top: 20px;
+    }
+    
+    .cancel-notification-content {
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+        padding: 20px;
+    }
+    
+    .cancel-icon {
+        font-size: 24px;
+        flex-shrink: 0;
+    }
+    
+    .cancel-text {
+        flex: 1;
+    }
+    
+    .cancel-text strong {
+        display: block;
+        color: #333;
+        font-size: 16px;
+        margin-bottom: 5px;
+    }
+    
+    .cancel-text p {
+        color: #666;
+        font-size: 14px;
+        margin: 0;
+    }
+    
+    .cancel-close {
+        background: none;
+        border: none;
+        font-size: 28px;
+        color: #999;
+        cursor: pointer;
+        padding: 0;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 4px;
+        transition: all 0.2s;
+        flex-shrink: 0;
+    }
+    
+    .cancel-close:hover {
+        background: #f5f5f5;
+        color: #333;
     }
 `;
 document.head.appendChild(style);
