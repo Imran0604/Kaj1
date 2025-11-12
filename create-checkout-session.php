@@ -71,7 +71,7 @@ try {
     // Get the protocol and host dynamically
     $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
     $host = $_SERVER['HTTP_HOST'];
-    $baseUrl = $protocol . '://' . $host . '/';
+    $baseUrl = $protocol . '://' . $host . '';
     
     // Create Stripe checkout session
     $session = \Stripe\Checkout\Session::create([
