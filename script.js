@@ -152,25 +152,169 @@ function openMonthlyDonation() {
 }
 
 /* Stripe checkout handoff (replace with your backend endpoint/session) */
-async function processDonation() {
-  try {
-    // Gather simple payload (extend as needed)
-    const type = document.getElementById('donationType')?.value || 'general';
-    const name = document.getElementById('donorName')?.value || '';
-    const email = document.getElementById('donorEmail')?.value || '';
+let stripe;
 
-    // Example: call your server to create a Checkout Session
-    // const res = await fetch('/api/checkout', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ type, name, email }) });
-    // const { checkoutUrl } = await res.json();
-    // if (checkoutUrl) { window.location.href = checkoutUrl; return; }
+// Initialize Stripe
+async function initializeStripe() {
+    try {
+        const response = await fetch('get-stripe-key.php');
+        const data = await response.json();
+        stripe = Stripe(data.publishableKey);
+    } catch (error) {
+        console.error('Error initializing Stripe:', error);
+    }
+}
 
-    // Placeholder redirect (replace):
-    const params = new URLSearchParams({ type, name, email });
-    window.location.href = `https://donate.stripe.com/test_12345?${params.toString()}`;
-  } catch (e) {
-    console.error(e);
-    alert('Unable to start checkout. Please try again.');
-  }
+// Test PHP connection
+async function testConnection() {
+    try {
+        const response = await fetch('test-connection.php');
+        const data = await response.json();
+        console.log('Connection test:', data);
+        return true;
+    } catch (error) {
+        console.error('Connection test failed:', error);
+        return false;
+    }
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+    initializeStripe();
+    testConnection(); // Test if PHP is accessible
+    console.log('Humanity First Foundation - Ready');
+});
+
+// Handle quick donate form
+async function handleQuickDonate(event) {
+    event.preventDefault();
+    
+    const form = event.target;
+    const currency = form.querySelector('#currencySelect').value;
+    const amountInput = form.querySelector('input[type="number"]').value;
+    const purposeSelect = form.querySelector('select[aria-label="Donation Purpose"]');
+    const purpose = purposeSelect ? purposeSelect.value : 'General Fund';
+    
+    // Get active preset button amount if input is empty
+    let amount = parseFloat(amountInput);
+    if (!amount || isNaN(amount)) {
+        const activeBtn = form.querySelector('.preset-buttons button.active');
+        if (activeBtn) {
+            amount = parseFloat(activeBtn.getAttribute('data-amount'));
+        }
+    }
+    
+    if (!amount || amount <= 0) {
+        alert('Please enter a valid donation amount');
+        return;
+    }
+    
+    console.log('Quick donate data:', { amount, currency, purpose });
+    
+    await createCheckoutSession({
+        amount: amount,
+        currency: currency,
+        donationType: purpose.toLowerCase().replace(/\s+/g, '-'),
+        donorName: '',
+        donorEmail: ''
+    });
+}
+
+// Process donation from modal
+async function processDonation(event) {
+    event.preventDefault();
+    
+    const donationType = document.getElementById('donationType').value;
+    const currency = document.getElementById('modalCurrency').value;
+    const amount = document.getElementById('modalAmount').value;
+    const donorName = document.getElementById('donorName').value;
+    const donorEmail = document.getElementById('donorEmail').value;
+    
+    if (!amount || amount <= 0) {
+        alert('Please enter a valid donation amount');
+        return;
+    }
+    
+    await createCheckoutSession({
+        amount: parseFloat(amount),
+        currency: currency,
+        donationType: donationType,
+        donorName: donorName,
+        donorEmail: donorEmail
+    });
+}
+
+// Create Stripe checkout session
+async function createCheckoutSession(data) {
+    try {
+        console.log('Creating checkout session with:', data);
+        
+        // Use relative URL
+        const response = await fetch('./create-checkout-session.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        });
+        
+        // Log response details
+        console.log('Response status:', response.status);
+        console.log('Response OK:', response.ok);
+        
+        // Get response text first
+        const text = await response.text();
+        console.log('Raw response:', text);
+        
+        // Check if response is ok
+        if (!response.ok) {
+            throw new Error(`Server error: ${response.status} - ${text || 'No response body'}`);
+        }
+        
+        // Try to parse JSON
+        let result;
+        try {
+            result = JSON.parse(text);
+        } catch (e) {
+            console.error('JSON parse error:', e);
+            throw new Error('Invalid JSON response from server. Raw response: ' + text);
+        }
+        
+        console.log('Parsed response:', result);
+        
+        if (result.error) {
+            alert('Error: ' + result.error);
+            return;
+        }
+        
+        if (!result.id) {
+            alert('Error: No session ID received');
+            return;
+        }
+        
+        // Check if stripe is initialized
+        if (!stripe) {
+            await initializeStripe();
+            // Wait a moment for stripe to initialize
+            await new Promise(resolve => setTimeout(resolve, 100));
+        }
+        
+        if (!stripe) {
+            throw new Error('Stripe failed to initialize');
+        }
+        
+        // Redirect to Stripe Checkout
+        const stripeResult = await stripe.redirectToCheckout({
+            sessionId: result.id
+        });
+        
+        if (stripeResult.error) {
+            alert(stripeResult.error.message);
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred. Please try again. Error: ' + error.message);
+    }
 }
 
 /* Optional: close modal on Escape */
@@ -259,8 +403,3 @@ if (sliderContainer) {
     sliderInterval = setInterval(nextSlide, 5000);
   });
 }
-
-// Initialize page
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('Humanity First Foundation - Ready');
-});

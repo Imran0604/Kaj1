@@ -101,7 +101,7 @@
       </div>
     </nav>
   </header>
-  <form class="quick-donate-container">
+  <form class="quick-donate-container" onsubmit="handleQuickDonate(event)">
 
     <div class="donate-item currency-picker">
       <select aria-label="Currency" id="currencySelect">
@@ -672,7 +672,7 @@
         <div id="googleSignInDiv" class="google-signin-container"></div>
         <p class="signin-note">Sign in with Google for receipts (optional)</p>
 
-        <form id="donationForm">
+        <form id="donationForm" onsubmit="processDonation(event)">
           <div class="form-group">
             <label>Donation Type</label>
             <select id="donationType" class="form-control">
@@ -685,7 +685,19 @@
             </select>
           </div>
 
-          <!-- Removed the amount selection UI. Stripe will handle amount on checkout. -->
+          <div class="form-group">
+            <label>Currency</label>
+            <select id="modalCurrency" class="form-control">
+              <option value="USD">USD</option>
+              <option value="MYR">MYR</option>
+              <option value="AUD">AUD</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Amount</label>
+            <input type="number" id="modalAmount" class="form-control" placeholder="Enter amount" min="1" required>
+          </div>
 
           <div class="form-row">
             <div class="form-group">
@@ -699,7 +711,7 @@
             </div>
           </div>
 
-          <button type="button" class="submit-btn" onclick="processDonation()">
+          <button type="submit" class="submit-btn">
             <span>Continue to Stripe Checkout</span>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M5 12h14M12 5l7 7-7 7" />
