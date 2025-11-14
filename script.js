@@ -1,20 +1,3 @@
-// Direct Stripe Checkout Link (No Backend Required)
-// NOTE: Payment Links can't receive arbitrary amount via query string.
-// Option A: Use a single link and let donors enter amount on Stripe.
-// Option B (recommended): Create per-amount links below and we’ll route accordingly.
-const DEFAULT_STRIPE_PAYMENT_LINK = 'https://donate.stripe.com/test_6oU9ATgtO0580LTeNP2kw00';
-// Alias to fix reference error in buildStripeUrl
-const STRIPE_CHECKOUT_URL = DEFAULT_STRIPE_PAYMENT_LINK;
-
-// Map popular amounts to their own Payment Links (replace with your real links if you create them)
-const PAYMENT_LINKS = {
-    // 25: 'https://donate.stripe.com/your_25_link',
-    // 50: 'https://donate.stripe.com/your_50_link',
-    // 100: 'https://donate.stripe.com/your_100_link',
-    // 250: 'https://donate.stripe.com/your_250_link',
-    // 500: 'https://donate.stripe.com/your_500_link'
-};
-
 // Google Sign-In Configuration (Optional)
 let googleUser = null;
 // Prevent double navigation
@@ -136,13 +119,11 @@ function closeDonateModal() {
 
 /* Section helpers */
 function viewProjects(slug) {
-  // ...existing code...
   // Fallback: scroll to projects
   const el = document.getElementById('projects');
   if (el) el.scrollIntoView({ behavior: 'smooth' });
 }
 function donateToCampaign(campaign) {
-  // ...existing code...
   openDonateModal();
 }
 
