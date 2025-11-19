@@ -8,10 +8,12 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: "Rajdhani", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    body,
+    input,
+    .section-subtitle {
+      font-family: "Outfit", sans-serif;
       font-weight: 500;
     }
 
@@ -24,13 +26,8 @@
     .brand-name,
     .section-title,
     button {
-      font-family: "Rajdhani", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      font-family: "Outfit", sans-serif;
       font-weight: 700;
-    }
-
-    .section-subtitle {
-      font-family: "Rajdhani", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-      font-weight: 500;
     }
   </style>
   <script src="https://js.stripe.com/v3/"></script>
@@ -45,7 +42,7 @@
 <body>
   <!-- Header & Navigation -->
   <header id="header">
-    <nav class="navbar">
+    <nav class="navbar mega-enabled">
       <div class="nav-container">
         <div class="nav-brand">
           <img src="images/HFF2(big size).jpg" alt="Logo" class="logo">
@@ -58,15 +55,44 @@
         </button>
 
         <div class="nav-links" id="navLinks">
-          <a href="#home" class="nav-link" aria-current="page">Home</a>
-          <a href="#programs" class="nav-link">Programs</a>
-          <a href="#campaigns" class="nav-link">Campaigns</a>
-          <a href="#ways-to-give" class="nav-link">Ways To Give</a>
-          <a href="#projects" class="nav-link">Projects</a>
-          <a href="#where-we-work" class="nav-link">Where We Work</a>
-          <a href="#get-involved" class="nav-link">Get Involved</a>
-          <a href="#about" class="nav-link">About</a>
-          <button class="donate-btn-nav" onclick="openDonateModal()">Donate Now</button>
+          <ul class="primary-nav">
+            <li class="nav-item"><a href="#home" aria-current="page">Home</a></li>
+            <li class="nav-item has-mega">
+              <button class="nav-toggle" aria-expanded="false" aria-controls="mega-programs">Programs
+                <svg width="12" height="12" viewBox="0 0 12 12">
+                  <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" />
+                </svg>
+              </button>
+            </li>
+            <li class="nav-item has-mega">
+              <button class="nav-toggle" aria-expanded="false" aria-controls="mega-projects">Projects
+                <svg width="12" height="12" viewBox="0 0 12 12">
+                  <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" />
+                </svg>
+              </button>
+            </li>
+            <li class="nav-item has-mega">
+              <button class="nav-toggle" aria-expanded="false" aria-controls="mega-regions">Where We Work
+                <svg width="12" height="12" viewBox="0 0 12 12">
+                  <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" />
+                </svg>
+              </button>
+            </li>
+            <li class="nav-item has-mega">
+              <button class="nav-toggle" aria-expanded="false" aria-controls="mega-involved">Get Involved
+                <svg width="12" height="12" viewBox="0 0 12 12">
+                  <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" />
+                </svg>
+              </button>
+            </li>
+            <li class="nav-item has-mega">
+              <button class="nav-toggle" aria-expanded="false" aria-controls="mega-about">About
+                <svg width="12" height="12" viewBox="0 0 12 12">
+                  <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" />
+                </svg>
+              </button>
+            </li>
+          </ul>
         </div>
 
         <div class="nav-actions">
@@ -102,52 +128,171 @@
               <path d="M16 18h.01"></path>
             </svg>
           </button>
+
+          <button class="donate-btn-nav donate-btn-large" onclick="openDonateModal()" aria-label="Donate Now">Donate Now
+          </button>
         </div>
+      </div>
+
+      <!-- Mega Panels -->
+      <div class="mega-panels">
+        <section id="mega-programs" class="mega-panel" aria-hidden="true">
+          <div class="mega-header">
+            <h4>Programs</h4>
+            <p>Explore our core program areas making sustainable impact.</p>
+            <a href="#programs" class="mega-cta">View All Programs →</a>
+          </div>
+          <div class="mega-grid">
+            <div>
+              <h5>Core Areas</h5>
+              <a href="#programs" onclick="viewProjects('emergency')">Emergency Relief</a>
+              <a href="#programs" onclick="viewProjects('medical')">Medical Aid</a>
+              <a href="#programs" onclick="viewProjects('education')">Education</a>
+              <a href="#programs" onclick="viewProjects('water')">Water Infrastructure</a>
+            </div>
+            <div>
+              <h5>Human Care</h5>
+              <a href="#programs" onclick="viewProjects('food')">Food Security</a>
+              <a href="#programs" onclick="viewProjects('orphans')">Care for Orphans</a>
+              <a href="#programs" onclick="viewProjects('shelter')">Shelter Support</a>
+              <a href="#programs" onclick="openDonateModal('zakat')">Faith-Based Giving</a>
+            </div>
+            <div>
+              <h5>Quick Links</h5>
+              <a href="#ways-to-give">Ways To Give</a>
+              <a href="#campaigns">Active Campaigns</a>
+              <a href="#projects">Featured Projects</a>
+              <a href="#get-involved">Get Involved</a>
+            </div>
+          </div>
+        </section>
+
+        <section id="mega-projects" class="mega-panel" aria-hidden="true">
+          <div class="mega-header">
+            <h4>Projects</h4>
+            <p>Highlighted initiatives delivering measurable change.</p>
+            <a href="#projects" class="mega-cta">Browse Projects →</a>
+          </div>
+          <div class="mega-grid">
+            <div>
+              <h5>Featured</h5>
+              <a href="#projects">Homes & Hope</a>
+              <a href="#projects">Ukraine Relief</a>
+              <a href="#projects">Water For Tomorrow</a>
+              <a href="#projects">Vision For All</a>
+            </div>
+            <div>
+              <h5>Emergency</h5>
+              <a href="#campaigns">Gaza Relief</a>
+              <a href="#campaigns">Sudan Emergency</a>
+              <a href="#campaigns">Syria Support</a>
+              <a href="#campaigns">Yemen Aid</a>
+            </div>
+            <div>
+              <h5>Impact Areas</h5>
+              <a href="#programs">Education Access</a>
+              <a href="#programs">Nutrition</a>
+              <a href="#programs">Health Services</a>
+              <a href="#programs">Resilience</a>
+            </div>
+          </div>
+        </section>
+
+        <section id="mega-regions" class="mega-panel" aria-hidden="true">
+          <div class="mega-header">
+            <h4>Where We Work</h4>
+            <p>Global footprint across crisis & development zones.</p>
+            <a href="#where-we-work" class="mega-cta">View Regions →</a>
+          </div>
+          <div class="mega-grid">
+            <div>
+              <h5>Middle East</h5>
+              <a href="#where-we-work">Palestine</a>
+              <a href="#where-we-work">Syria</a>
+              <a href="#where-we-work">Yemen</a>
+              <a href="#where-we-work">Lebanon</a>
+            </div>
+            <div>
+              <h5>Africa</h5>
+              <a href="#where-we-work">Sudan</a>
+              <a href="#where-we-work">Somalia</a>
+              <a href="#where-we-work">Kenya</a>
+              <a href="#where-we-work">Morocco</a>
+            </div>
+            <div>
+              <h5>Asia / Others</h5>
+              <a href="#where-we-work">Pakistan</a>
+              <a href="#where-we-work">Bangladesh</a>
+              <a href="#where-we-work">Indonesia</a>
+              <a href="#where-we-work">Ukraine</a>
+            </div>
+          </div>
+        </section>
+
+        <section id="mega-involved" class="mega-panel" aria-hidden="true">
+          <div class="mega-header">
+            <h4>Get Involved</h4>
+            <p>Multiple ways to support and amplify the mission.</p>
+            <a href="#get-involved" class="mega-cta">Join Us →</a>
+          </div>
+          <div class="mega-grid">
+            <div>
+              <h5>Participate</h5>
+              <a href="#get-involved">Volunteer</a>
+              <a href="#get-involved">Fundraise</a>
+              <a href="#get-involved">Partner</a>
+              <a href="#get-involved">Events</a>
+            </div>
+            <div>
+              <h5>Give</h5>
+              <a href="#ways-to-give">Monthly Sustainer</a>
+              <a href="#ways-to-give" onclick="openDonateModal('zakat')">Zakat</a>
+              <a href="#ways-to-give" onclick="openDonateModal('sadaqah')">Sadaqah</a>
+              <a href="#ways-to-give" onclick="openDonateModal('fidya')">Fidya / Kaffarah</a>
+            </div>
+            <div>
+              <h5>Tools</h5>
+              <a href="#home" onclick="openZakatCalculator()">Zakat Calculator</a>
+              <a href="#home">Impact Calculator</a>
+              <a href="#projects">Project Spotlight</a>
+              <a href="#campaigns">Urgent Appeals</a>
+            </div>
+          </div>
+        </section>
+
+        <section id="mega-about" class="mega-panel" aria-hidden="true">
+          <div class="mega-header">
+            <h4>About Us</h4>
+            <p>Mission, ethos and transparency standards.</p>
+            <a href="#about" class="mega-cta">Learn More →</a>
+          </div>
+          <div class="mega-grid">
+            <div>
+              <h5>Organization</h5>
+              <a href="#about">Mission & Vision</a>
+              <a href="#about">Leadership</a>
+              <a href="#about">Reports</a>
+              <a href="#about">Testimonials</a>
+            </div>
+            <div>
+              <h5>Support</h5>
+              <a href="#about">Contact</a>
+              <a href="#about">Donor Care</a>
+              <a href="#get-involved">Careers</a>
+              <a href="#get-involved">Volunteer Portal</a>
+            </div>
+            <div>
+              <h5>Impact</h5>
+              <a href="#programs">Program Models</a>
+              <a href="#projects">Case Studies</a>
+              <a href="#campaigns">Current Appeals</a>
+              <a href="#ways-to-give">Compliance & Policies</a>
+            </div>
+          </div>
+        </section>
       </div>
     </nav>
   </header>
-  <form class="quick-donate-container" onsubmit="handleQuickDonate(event)">
-
-    <div class="donate-item currency-picker">
-      <select aria-label="Currency" id="currencySelect">
-        <option value="USD" selected>USD</option>
-        <option value="MYR">MYR</option>
-        <option value="AUD">AUD</option>
-      </select>
-    </div>
-
-    <div class="donate-item amount-input">
-      <input type="number" placeholder="Amount" aria-label="Donation Amount" value="100">
-    </div>
-
-    <div class="donate-item preset-buttons">
-      <button type="button" data-amount="100">$100</button>
-      <button type="button" data-amount="150">$150</button>
-      <button type="button" class="active" data-amount="200">$200</button>
-      <button type="button" data-amount="500">$500</button>
-    </div>
-
-    <div class="donate-item purpose-picker">
-      <select aria-label="Donation Purpose">
-        <option>Gaza Emergency Relief</option>
-        <option>General Fund</option>
-        <option>Emergency Relief</option>
-        <option>Water Projects</option>
-        <option>Medical Aid</option>
-      </select>
-    </div>
-
-    <div class="donate-item payment-icons">
-      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/paypal.svg" alt="PayPal" class="payment-icon">
-      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/visa.svg" alt="Visa" class="payment-icon">
-      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/mastercard.svg" alt="Mastercard"
-        class="payment-icon">
-      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/googlepay.svg" alt="Google Pay" class="payment-icon">
-    </div>
-
-    <button type="submit" class="donate-btn-submit">QUICK DONATE</button>
-
-  </form>
 
   <!-- Quick Donate Section -->
   <section id="home" class="quick-donate-section">
@@ -232,23 +377,119 @@
     <div class="slider-container">
       <div class="slider-wrapper">
         <div class="slide active">
-          <img src="images/istockphoto-1127203174-612x612.jpg" alt="Slide 1">
+          <img src="https://hdfund.org/wp-content/uploads/2025/06/PIC02010-1.jpg" alt="Slide 1">
+          <div class="slider-overlay">
+        <div class="slider-badge" style="background-color: #7e57c2;">
+          <svg class="badge-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none">
+            <path d="M17.3116 15C17.936 15 18.4327 14.6071 18.8786 14.0576C19.7915 12.9329 18.2927 12.034 17.7211 11.5938C17.1399 11.1463 16.4911 10.8928 15.8333 10.8333M14.9999 9.16667C16.1505 9.16667 17.0833 8.23393 17.0833 7.08333C17.0833 5.93274 16.1505 5 14.9999 5" stroke="white" stroke-width="1.5" stroke-linecap="round"></path><path d="M2.68823 15C2.06381 15 1.56716 14.6071 1.12122 14.0576C0.208341 12.9329 1.70716 12.034 2.2788 11.5938C2.85991 11.1463 3.50875 10.8928 4.1666 10.8333M4.58327 9.16667C3.43267 9.16667 2.49993 8.23393 2.49993 7.08333C2.49993 5.93274 3.43267 5 4.58327 5" stroke="white" stroke-width="1.5" stroke-linecap="round"></path><path d="M6.73641 12.5926C5.88492 13.1192 3.65239 14.1942 5.01215 15.5395C5.67639 16.1967 6.41617 16.6667 7.34626 16.6667H12.6535C13.5836 16.6667 14.3234 16.1967 14.9877 15.5395C16.3474 14.1942 14.1149 13.1192 13.2634 12.5926C11.2667 11.358 8.73312 11.358 6.73641 12.5926Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12.9166 6.25001C12.9166 7.86084 11.6107 9.16668 9.9999 9.16668C8.38907 9.16668 7.08324 7.86084 7.08324 6.25001C7.08324 4.63918 8.38907 3.33334 9.9999 3.33334C11.6107 3.33334 12.9166 4.63918 12.9166 6.25001Z" stroke="white" stroke-width="1.5"></path>
+          </svg>
+          <span>Orphan Care</span>
+        </div>
+        <h1 class="slider-title">Pakistan Floods: Families Need You</h1>
+        <p class="slider-desc">
+          Your gift to HDF delivers urgent food, water, and shelter to displaced families in Pakistan. Every contribution matters. ❤️
+        </p>
+        <div class="slider-cta">
+          <a class="btn btn-primary" href="https://hdfund.org/urgent-appeals/pakistan-floods/" target="_blank" rel="noopener">Save Lives In Pakistan</a>
+          <a class="btn btn-light" href="#projects">Learn More</a>
+        </div>
+      </div>
         </div>
         <div class="slide">
-          <img src="images/istockphoto-481990146-612x612.jpg" alt="Slide 2">
+          <img src="https://hdfund.org/wp-content/uploads/2025/10/Hero-image-updated-1.png" alt="Slide 2">
+          <div class="slider-overlay">
+        <div class="slider-badge">
+          <svg class="badge-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none">
+            <path d="M5.16 15.8333C5.042 15.8333 4.943 15.7933 4.863 15.7133C4.783 15.6333 4.743 15.5342 4.743 15.4158C4.743 15.2975 4.783 15.1986 4.863 15.1192C4.943 15.0397 5.042 15 5.16 15H5.965L7.53 9.71333C7.609 9.41611 7.77 9.18111 8.012 9.00833C8.255 8.83555 8.522 8.74944 8.814 8.75H11.186C11.479 8.75 11.746 8.83611 11.988 9.00833C12.23 9.18111 12.391 9.41611 12.47 9.71333L14.035 15H14.84C14.958 15 15.057 15.04 15.137 15.12C15.217 15.2 15.257 15.2992 15.257 15.4175C15.257 15.5358 15.217 15.6347 15.137 15.7142C15.057 15.7936 14.958 15.8333 14.84 15.8333H5.16Z" fill="white"/>
+          </svg>
+          <span>Emergency Appeal</span>
+        </div>
+        <h1 class="slider-title">Hope lives a Africa</h1>
+        <p class="slider-desc">
+Our mission is to provide not just sponsorship but holistic care and empowerment to these vulnerable children.        </p>
+        <div class="slider-cta">
+          <a class="btn btn-primary" href="https://hdfund.org/urgent-appeals/pakistan-floods/" target="_blank" rel="noopener">Learn More</a>
+          <a class="btn btn-light" href="#projects">Learn More</a>
+        </div>
+      </div>
         </div>
         <div class="slide">
-          <img src="images/istockphoto-941191996-612x612.jpg" alt="Slide 3">
+          <img src="https://hdfund.org/wp-content/uploads/2025/08/Pak-Floods-2025-2.jpg" alt="Slide 3">
+          <div class="slider-overlay">
+        <div class="slider-badge" style="background-color: #006847;">
+          <svg class="badge-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none">
+            <path d="M5.16 15.8333C5.042 15.8333 4.943 15.7933 4.863 15.7133C4.783 15.6333 4.743 15.5342 4.743 15.4158C4.743 15.2975 4.783 15.1986 4.863 15.1192C4.943 15.0397 5.042 15 5.16 15H5.965L7.53 9.71333C7.609 9.41611 7.77 9.18111 8.012 9.00833C8.255 8.83555 8.522 8.74944 8.814 8.75H11.186C11.479 8.75 11.746 8.83611 11.988 9.00833C12.23 9.18111 12.391 9.41611 12.47 9.71333L14.035 15H14.84C14.958 15 15.057 15.04 15.137 15.12C15.217 15.2 15.257 15.2992 15.257 15.4175C15.257 15.5358 15.217 15.6347 15.137 15.7142C15.057 15.7936 14.958 15.8333 14.84 15.8333H5.16Z" fill="white"/>
+          </svg>
+          <span>Rebuilding Gaza</span>
+        </div>
+        <h1 class="slider-title">Rebuilding Gaza</h1>
+        <p class="slider-desc">
+Every family deserves a safe home, clean water, and a future filled with hope. Discover how HDF’s Rebuild Gaza initiative is turning compassion into action — one home, one life, one community at a time.        </p>
+        <div class="slider-cta">
+          <a class="btn btn-primary" href="https://hdfund.org/urgent-appeals/pakistan-floods/" target="_blank" rel="noopener">Learn More</a>
+          <a class="btn btn-light" href="#projects">Learn More</a>
+        </div>
+      </div>
         </div>
       </div>
 
-      <div class="slider-dots">
-        <span class="dot active" onclick="goToSlide(0)"></span>
-        <span class="dot" onclick="goToSlide(1)"></span>
-        <span class="dot" onclick="goToSlide(2)"></span>
+      <!-- Overlay content (middle-left) -->
+      
+
+      <!-- Arrow navigation (bottom-right) -->
+      <div class="slider-nav">
+        <button class="slider-arrow prev" aria-label="Previous slide">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2"/></svg>
+        </button>
+        <button class="slider-arrow next" aria-label="Next slide">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2"/></svg>
+        </button>
       </div>
     </div>
   </section>
+
+  <form class="quick-donate-container" onsubmit="handleQuickDonate(event)">
+
+    <div class="donate-item currency-picker">
+      <select aria-label="Currency" id="currencySelect">
+        <option value="USD" selected>USD</option>
+        <option value="MYR">MYR</option>
+        <option value="AUD">AUD</option>
+      </select>
+    </div>
+
+    <div class="donate-item amount-input">
+      <input type="number" placeholder="Amount" aria-label="Donation Amount" value="100">
+    </div>
+
+    <div class="donate-item preset-buttons">
+      <button type="button" data-amount="100">$100</button>
+      <button type="button" data-amount="150">$150</button>
+      <button type="button" class="active" data-amount="200">$200</button>
+      <button type="button" data-amount="500">$500</button>
+    </div>
+
+    <div class="donate-item purpose-picker">
+      <select aria-label="Donation Purpose">
+        <option>Gaza Emergency Relief</option>
+        <option>General Fund</option>
+        <option>Emergency Relief</option>
+        <option>Water Projects</option>
+        <option>Medical Aid</option>
+      </select>
+    </div>
+
+    <div class="donate-item payment-icons">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/paypal.svg" alt="PayPal" class="payment-icon">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/visa.svg" alt="Visa" class="payment-icon">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/mastercard.svg" alt="Mastercard"
+        class="payment-icon">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/googlepay.svg" alt="Google Pay" class="payment-icon">
+    </div>
+
+    <button type="submit" class="donate-btn-submit">QUICK DONATE</button>
+
+  </form>
 
   <!-- Hero Section -->
   <section class="hero">
@@ -727,7 +968,17 @@
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/stripe.js"></script>
+  <script src="js/google-signin.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/donations.js"></script>
+  <script src="js/slider.js"></script>
+  <script src="js/search.js"></script>
+  <script src="js/zakat.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/mega-menu.js"></script>
+  <script src="js/init.js"></script>
 </body>
 
 </html>
