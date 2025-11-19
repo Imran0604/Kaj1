@@ -299,3 +299,664 @@ section { padding: 5rem 2rem; }
   .payment-icons { width: 100%; justify-content: center; }
   .donate-btn-submit { width: 100%; }
 }
+.impact-section {
+    background-color: var(--primary-bg);
+    color: var(--text-white);
+    padding: 80px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.impact-container {
+    max-width: 1200px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Split 50/50 */
+    gap: 60px;
+    align-items: center;
+}
+
+/* --- Left Side: Content --- */
+.impact-header {
+    margin-bottom: 40px;
+}
+
+.impact-header .subtitle {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.9;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.impact-header h2 {
+    font-size: 2.5rem;
+    margin: 0;
+    font-weight: 600;
+}
+
+/* Stats Grid Layout */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 Columns */
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* Icon Styling with Yellow Blob */
+.icon-box {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--text-white);
+    z-index: 1;
+}
+
+/* The yellow shape behind the icon */
+.icon-box::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background-color: var(--accent-yellow);
+    border-radius: 50%;
+    right: -5px;
+    bottom: -5px;
+    z-index: -1;
+    opacity: 0.8;
+}
+
+.stat-item h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 5px 0;
+}
+
+.stat-item p {
+    font-size: 0.85rem;
+    color: var(--white);
+    font-weight: 400;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* Button Styling */
+.btn-about {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #fff;
+    color: var(--primary-bg);
+    padding: 12px 28px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: transform 0.2s ease;
+}
+
+.btn-about:hover {
+    transform: translateY(-2px);
+}
+
+.btn-about i {
+    font-size: 0.7rem;
+}
+
+/* --- Right Side: Media --- */
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    height: 450px; /* Fixed height for the card look */
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.video-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.8); /* Darken image slightly */
+}
+
+/* Play Button Overlay */
+.play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70px;
+    height: 70px;
+    background: rgba(255, 255, 255, 0.2); /* Glass effect */
+    backdrop-filter: blur(5px);
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 5px; /* Optical alignment for triangle */
+    transition: all 0.3s ease;
+}
+
+.play-btn:hover {
+    background: #fff;
+    color: var(--primary-bg);
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 992px) {
+    .impact-container {
+        grid-template-columns: 1fr; /* Stack vertically */
+        text-align: left; /* Keep text left aligned */
+    }
+    
+    .stats-grid {
+        /* Keep 3 columns on tablet, or switch to 2 if tight */
+        grid-template-columns: repeat(3, 1fr); 
+    }
+    
+    .video-wrapper {
+        height: 350px;
+    }
+}
+
+@media (max-width: 600px) {
+    .stats-grid {
+        grid-template-columns: 1fr 1fr; /* 2 Columns on mobile */
+    }
+    
+    .impact-header h2 {
+        font-size: 2rem;
+    }
+}
+
+.giving-basket-section {
+    padding: 60px 0;
+    position: relative; /* For arrows */
+}
+
+.giving-basket-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 5% 20px 5%;
+    padding: 0 20px;
+}
+
+.giving-basket-header h2 {
+    font-size: clamp(1.6rem, 2.5vw + 0.5rem, 2.2rem);
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.view-all {
+    color: var(--primary-blue);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.2s ease;
+}
+
+.view-all:hover {
+    background-color: rgba(0, 123, 255, 0.05);
+}
+
+/* --- Carousel Container --- */
+.giving-basket-carousel {
+    overflow-x: auto; /* Enables horizontal scrolling */
+    scroll-behavior: smooth;
+    padding: 20px 0; /* Vertical padding for shadow */
+    -webkit-overflow-scrolling: touch; /* Smoother scrolling on iOS */
+}
+
+.carousel-track {
+    display: flex;
+    gap: 30px; /* Space between cards */
+    padding-right: max(20px, 5vw); /* Padding at the end */
+}
+
+/* Hide scrollbar for aesthetics */
+.giving-basket-carousel::-webkit-scrollbar {
+    display: none;
+}
+.giving-basket-carousel {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+/* --- Gift Card Styling --- */
+.gift-card {
+    flex: 0 0 auto; /* Prevent cards from shrinking */
+    width: 280px; /* Fixed width for cards */
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.gift-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+}
+
+.gift-card img {
+    width: 100%;
+    height: 180px; /* Fixed height for image */
+    object-fit: cover; /* Crop to fill */
+}
+
+.card-content {
+    padding: 18px 20px;
+}
+
+.category {
+    font-size: 0.75rem;
+    color: var(--text-light-gray);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.category .dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+/* Specific dot colors */
+.category-shelter .dot { background-color: var(--dot-shelter); }
+.category-food .dot { background-color: var(--dot-food); }
+.category-orphan .dot { background-color: var(--dot-orphan); }
+.category-education .dot { background-color: var(--dot-education); }
+.category-medical .dot { background-color: var(--dot-medical); }
+
+
+.gift-card h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin: 0 0 15px 0;
+    line-height: 1.3;
+    min-height: 48px; /* Ensure consistent height for titles */
+}
+
+.donate-btn {
+    display: inline-block;
+    color: var(--link-blue);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 8px 0;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.2s ease;
+}
+
+.donate-btn:hover {
+    border-color: var(--link-blue);
+}
+
+/* --- Carousel Navigation Arrows --- */
+.carousel-nav {
+    position: absolute;
+    bottom: 20px; /* Adjust as needed */
+    right: max(20px, 5vw); /* Align with header content */
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+}
+
+.nav-arrow {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #555;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: all 0.2s ease;
+}
+
+.nav-arrow:hover {
+    background-color: var(--accent-yellow); /* Using a yellow similar to your previous section */
+    border-color: var(--accent-yellow);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+/* Hide arrows on very small screens if they interfere */
+@media (max-width: 600px) {
+    .carousel-nav {
+        display: none;
+    }
+}
+
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    .giving-basket-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .giving-basket-header h2 {
+        max-width: none;
+        font-size: 1.8rem;
+    }
+
+    .giving-basket-carousel {
+        margin-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .giving-basket-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .gift-card {
+        width: 250px; /* Slightly smaller cards on very small screens */
+    }
+}
+
+.projects-section {
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 40px;
+}
+
+.header-text h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin: 0 0 10px 0;
+}
+
+.header-text p {
+    color: var(--text-gray);
+    margin: 0;
+    max-width: 600px;
+    line-height: 1.5;
+}
+
+.view-all-link {
+    color: var(--primary-dark-teal);
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+/* --- Grid Layout --- */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+/* --- Card Styling --- */
+.project-card {
+    background: var(--card-white);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Image Area */
+.card-image-wrapper {
+    position: relative;
+    height: 250px;
+    width: 100%;
+}
+
+.card-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.8); /* Darken slightly so text pops */
+}
+
+/* Top Right Arrow Icon */
+.arrow-icon-circle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--text-dark);
+    transform: rotate(-45deg); /* Angled arrow like screenshot */
+    transition: transform 0.2s ease;
+}
+
+.arrow-icon-circle:hover {
+    transform: rotate(0deg);
+}
+
+/* Overlay Text Styling */
+.card-overlay {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    z-index: 2;
+}
+
+.title-graphic {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+/* Typography styles for overlay */
+.tag-red {
+    background-color: #D32F2F;
+    padding: 2px 8px;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    margin-bottom: -5px; /* Pull text closer */
+    z-index: 2;
+}
+
+.text-large {
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.center-text {
+    line-height: 0.9;
+}
+.text-small {
+    font-size: 1.2rem;
+    font-weight: 400;
+    display: block;
+}
+.text-highlight-yellow {
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: var(--accent-yellow);
+    text-transform: uppercase;
+}
+
+/* --- Card Body --- */
+.card-body {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    flex-grow: 1;
+}
+
+.category-label {
+    font-size: 0.7rem;
+    color: var(--text-gray);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+.card-body h3 {
+    margin: 0;
+    font-size: 1.4rem;
+    color: var(--text-dark);
+}
+
+/* Donation Buttons Row */
+.donation-amounts {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+.amount-btn {
+    flex: 1;
+    border: 1px solid #ddd;
+    background: #fff;
+    border-radius: 50px;
+    padding: 10px 0;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.amount-btn.active {
+    background-color: var(--accent-yellow);
+    border-color: var(--accent-yellow);
+    color: var(--text-dark);
+}
+
+.amount-btn:hover:not(.active) {
+    background-color: #f9f9f9;
+}
+
+.custom-amount {
+    flex: 1;
+    border: 1px solid #ddd;
+    border-radius: 50px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.custom-amount input {
+    width: 100%;
+    border: none;
+    outline: none;
+    text-align: center;
+    font-weight: 600;
+    background: transparent;
+}
+
+/* Description Text */
+.description {
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    line-height: 1.5;
+    margin: 5px 0 10px 0;
+    min-height: 40px; /* Align buttons roughly */
+}
+
+/* Frequency Selector */
+.frequency-selector {
+    margin-bottom: 10px;
+}
+
+.frequency-selector select {
+    width: 100%;
+    padding: 12px 20px;
+    border-radius: 50px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    appearance: none; /* Removes default arrow */
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23333%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: right 20px top 50%;
+    background-size: 12px auto;
+    cursor: pointer;
+    outline: none;
+}
+
+/* Donate Button */
+.donate-btn-full {
+    background-color: var(--primary-dark-teal);
+    color: #fff;
+    border: none;
+    border-radius: 10px; /* Less rounded than pills */
+    padding: 15px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.3s;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.donate-btn-full:hover {
+    background-color: #0a3a52;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .section-header {
+        flex-direction: column;
+        gap: 20px;
+    }
+}

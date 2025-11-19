@@ -3,6 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Outfit", sans-serif;
 }
 
 :root {
@@ -20,6 +21,28 @@
   --shadow: rgba(26, 82, 69, 0.1);
   --shadow-md: rgba(26, 82, 69, 0.15);
   --shadow-lg: rgba(26, 82, 69, 0.2);
+  --primary-bg: #124e3a; /* Deep Teal from image */
+  --accent-yellow: #ffd54f; /* Yellow for icons */
+  --text-white: #ffffff;
+
+  --bg-light-gray: #f8f8f8;
+  --text-dark: #333;
+  --text-light-gray: #888;
+  --primary-blue: #007bff; /* Example blue for 'View All' */
+  --link-blue: #1a5245; /* Dark teal for donate links */
+
+  /* Category dot colors */
+  --dot-shelter: #42a5f5; /* Blue */
+  --dot-food: #ffa726; /* Orange */
+  --dot-orphan: #9c27b0; /* Purple */
+  --dot-education: #ef5350; /* Red */
+  --dot-medical: #26c6da; /* Cyan */
+
+  --bg-gray: #e6e6e6; /* Light gray background for section */
+  --card-white: #ffffff;
+  --primary-dark-teal: #0e4d6c; /* The dark teal button color */
+  --text-gray: #666666;
+  --border-color: #ccc;
 }
 
 body {

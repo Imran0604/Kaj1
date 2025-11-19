@@ -3,3 +3,7 @@
 @import url('css/styles.sections.css');
 @import url('css/styles.slider.css');
 @import url('css/styles.modals.css');
+
+.arrow-gap{
+    margin-left: 10px;
+}

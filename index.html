@@ -9,11 +9,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     body,
-    input,
+    input, select, option,
     .section-subtitle {
-      font-family: "Outfit", sans-serif;
       font-weight: 500;
     }
 
@@ -26,7 +26,6 @@
     .brand-name,
     .section-title,
     button {
-      font-family: "Outfit", sans-serif;
       font-weight: 700;
     }
   </style>
@@ -129,7 +128,8 @@
             </svg>
           </button>
 
-          <button class="donate-btn-nav donate-btn-large" onclick="openDonateModal()" aria-label="Donate Now">Donate Now
+          <button class="donate-btn-nav donate-btn-large" onclick="openDonateModal()" aria-label="Donate Now">Donate
+            Now<i class="fa-solid fa-chevron-right  arrow-gap"></i>
           </button>
         </div>
       </div>
@@ -379,70 +379,98 @@
         <div class="slide active">
           <img src="https://hdfund.org/wp-content/uploads/2025/06/PIC02010-1.jpg" alt="Slide 1">
           <div class="slider-overlay">
-        <div class="slider-badge" style="background-color: #7e57c2;">
-          <svg class="badge-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none">
-            <path d="M17.3116 15C17.936 15 18.4327 14.6071 18.8786 14.0576C19.7915 12.9329 18.2927 12.034 17.7211 11.5938C17.1399 11.1463 16.4911 10.8928 15.8333 10.8333M14.9999 9.16667C16.1505 9.16667 17.0833 8.23393 17.0833 7.08333C17.0833 5.93274 16.1505 5 14.9999 5" stroke="white" stroke-width="1.5" stroke-linecap="round"></path><path d="M2.68823 15C2.06381 15 1.56716 14.6071 1.12122 14.0576C0.208341 12.9329 1.70716 12.034 2.2788 11.5938C2.85991 11.1463 3.50875 10.8928 4.1666 10.8333M4.58327 9.16667C3.43267 9.16667 2.49993 8.23393 2.49993 7.08333C2.49993 5.93274 3.43267 5 4.58327 5" stroke="white" stroke-width="1.5" stroke-linecap="round"></path><path d="M6.73641 12.5926C5.88492 13.1192 3.65239 14.1942 5.01215 15.5395C5.67639 16.1967 6.41617 16.6667 7.34626 16.6667H12.6535C13.5836 16.6667 14.3234 16.1967 14.9877 15.5395C16.3474 14.1942 14.1149 13.1192 13.2634 12.5926C11.2667 11.358 8.73312 11.358 6.73641 12.5926Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12.9166 6.25001C12.9166 7.86084 11.6107 9.16668 9.9999 9.16668C8.38907 9.16668 7.08324 7.86084 7.08324 6.25001C7.08324 4.63918 8.38907 3.33334 9.9999 3.33334C11.6107 3.33334 12.9166 4.63918 12.9166 6.25001Z" stroke="white" stroke-width="1.5"></path>
-          </svg>
-          <span>Orphan Care</span>
-        </div>
-        <h1 class="slider-title">Pakistan Floods: Families Need You</h1>
-        <p class="slider-desc">
-          Your gift to HDF delivers urgent food, water, and shelter to displaced families in Pakistan. Every contribution matters. ❤️
-        </p>
-        <div class="slider-cta">
-          <a class="btn btn-primary" href="https://hdfund.org/urgent-appeals/pakistan-floods/" target="_blank" rel="noopener">Save Lives In Pakistan</a>
-          <a class="btn btn-light" href="#projects">Learn More</a>
-        </div>
-      </div>
+            <div class="slider-badge" style="background-color: #7e57c2;">
+              <svg class="badge-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20"
+                fill="none">
+                <path
+                  d="M17.3116 15C17.936 15 18.4327 14.6071 18.8786 14.0576C19.7915 12.9329 18.2927 12.034 17.7211 11.5938C17.1399 11.1463 16.4911 10.8928 15.8333 10.8333M14.9999 9.16667C16.1505 9.16667 17.0833 8.23393 17.0833 7.08333C17.0833 5.93274 16.1505 5 14.9999 5"
+                  stroke="white" stroke-width="1.5" stroke-linecap="round"></path>
+                <path
+                  d="M2.68823 15C2.06381 15 1.56716 14.6071 1.12122 14.0576C0.208341 12.9329 1.70716 12.034 2.2788 11.5938C2.85991 11.1463 3.50875 10.8928 4.1666 10.8333M4.58327 9.16667C3.43267 9.16667 2.49993 8.23393 2.49993 7.08333C2.49993 5.93274 3.43267 5 4.58327 5"
+                  stroke="white" stroke-width="1.5" stroke-linecap="round"></path>
+                <path
+                  d="M6.73641 12.5926C5.88492 13.1192 3.65239 14.1942 5.01215 15.5395C5.67639 16.1967 6.41617 16.6667 7.34626 16.6667H12.6535C13.5836 16.6667 14.3234 16.1967 14.9877 15.5395C16.3474 14.1942 14.1149 13.1192 13.2634 12.5926C11.2667 11.358 8.73312 11.358 6.73641 12.5926Z"
+                  stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path
+                  d="M12.9166 6.25001C12.9166 7.86084 11.6107 9.16668 9.9999 9.16668C8.38907 9.16668 7.08324 7.86084 7.08324 6.25001C7.08324 4.63918 8.38907 3.33334 9.9999 3.33334C11.6107 3.33334 12.9166 4.63918 12.9166 6.25001Z"
+                  stroke="white" stroke-width="1.5"></path>
+              </svg>
+              <span>Orphan Care</span>
+            </div>
+            <h1 class="slider-title">Pakistan Floods: Families Need You</h1>
+            <p class="slider-desc">
+              Your gift to HDF delivers urgent food, water, and shelter to displaced families in Pakistan. Every
+              contribution matters. ❤️
+            </p>
+            <div class="slider-cta">
+              <a class="btn btn-primary" href="https://hdfund.org/urgent-appeals/pakistan-floods/" target="_blank"
+                rel="noopener">Save Lives In Pakistan<i class="fa-solid fa-chevron-right  arrow-gap"></i></a>
+              <a class="btn btn-light" href="#projects">Learn More</a>
+            </div>
+          </div>
         </div>
         <div class="slide">
           <img src="https://hdfund.org/wp-content/uploads/2025/10/Hero-image-updated-1.png" alt="Slide 2">
           <div class="slider-overlay">
-        <div class="slider-badge">
-          <svg class="badge-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none">
-            <path d="M5.16 15.8333C5.042 15.8333 4.943 15.7933 4.863 15.7133C4.783 15.6333 4.743 15.5342 4.743 15.4158C4.743 15.2975 4.783 15.1986 4.863 15.1192C4.943 15.0397 5.042 15 5.16 15H5.965L7.53 9.71333C7.609 9.41611 7.77 9.18111 8.012 9.00833C8.255 8.83555 8.522 8.74944 8.814 8.75H11.186C11.479 8.75 11.746 8.83611 11.988 9.00833C12.23 9.18111 12.391 9.41611 12.47 9.71333L14.035 15H14.84C14.958 15 15.057 15.04 15.137 15.12C15.217 15.2 15.257 15.2992 15.257 15.4175C15.257 15.5358 15.217 15.6347 15.137 15.7142C15.057 15.7936 14.958 15.8333 14.84 15.8333H5.16Z" fill="white"/>
-          </svg>
-          <span>Emergency Appeal</span>
-        </div>
-        <h1 class="slider-title">Hope lives a Africa</h1>
-        <p class="slider-desc">
-Our mission is to provide not just sponsorship but holistic care and empowerment to these vulnerable children.        </p>
-        <div class="slider-cta">
-          <a class="btn btn-primary" href="https://hdfund.org/urgent-appeals/pakistan-floods/" target="_blank" rel="noopener">Learn More</a>
-          <a class="btn btn-light" href="#projects">Learn More</a>
-        </div>
-      </div>
+            <div class="slider-badge">
+              <svg class="badge-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20"
+                fill="none">
+                <path
+                  d="M5.16 15.8333C5.042 15.8333 4.943 15.7933 4.863 15.7133C4.783 15.6333 4.743 15.5342 4.743 15.4158C4.743 15.2975 4.783 15.1986 4.863 15.1192C4.943 15.0397 5.042 15 5.16 15H5.965L7.53 9.71333C7.609 9.41611 7.77 9.18111 8.012 9.00833C8.255 8.83555 8.522 8.74944 8.814 8.75H11.186C11.479 8.75 11.746 8.83611 11.988 9.00833C12.23 9.18111 12.391 9.41611 12.47 9.71333L14.035 15H14.84C14.958 15 15.057 15.04 15.137 15.12C15.217 15.2 15.257 15.2992 15.257 15.4175C15.257 15.5358 15.217 15.6347 15.137 15.7142C15.057 15.7936 14.958 15.8333 14.84 15.8333H5.16Z"
+                  fill="white" />
+              </svg>
+              <span>Emergency Appeal</span>
+            </div>
+            <h1 class="slider-title">Hope lives a Africa</h1>
+            <p class="slider-desc">
+              Our mission is to provide not just sponsorship but holistic care and empowerment to these vulnerable
+              children. </p>
+            <div class="slider-cta">
+              <a class="btn btn-primary" href="https://hdfund.org/urgent-appeals/pakistan-floods/" target="_blank"
+                rel="noopener">Learn More<i class="fa-solid fa-chevron-right  arrow-gap"></i></a>
+              <a class="btn btn-light" href="#projects">Learn More</a>
+            </div>
+          </div>
         </div>
         <div class="slide">
           <img src="https://hdfund.org/wp-content/uploads/2025/08/Pak-Floods-2025-2.jpg" alt="Slide 3">
           <div class="slider-overlay">
-        <div class="slider-badge" style="background-color: #006847;">
-          <svg class="badge-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none">
-            <path d="M5.16 15.8333C5.042 15.8333 4.943 15.7933 4.863 15.7133C4.783 15.6333 4.743 15.5342 4.743 15.4158C4.743 15.2975 4.783 15.1986 4.863 15.1192C4.943 15.0397 5.042 15 5.16 15H5.965L7.53 9.71333C7.609 9.41611 7.77 9.18111 8.012 9.00833C8.255 8.83555 8.522 8.74944 8.814 8.75H11.186C11.479 8.75 11.746 8.83611 11.988 9.00833C12.23 9.18111 12.391 9.41611 12.47 9.71333L14.035 15H14.84C14.958 15 15.057 15.04 15.137 15.12C15.217 15.2 15.257 15.2992 15.257 15.4175C15.257 15.5358 15.217 15.6347 15.137 15.7142C15.057 15.7936 14.958 15.8333 14.84 15.8333H5.16Z" fill="white"/>
-          </svg>
-          <span>Rebuilding Gaza</span>
-        </div>
-        <h1 class="slider-title">Rebuilding Gaza</h1>
-        <p class="slider-desc">
-Every family deserves a safe home, clean water, and a future filled with hope. Discover how HDF’s Rebuild Gaza initiative is turning compassion into action — one home, one life, one community at a time.        </p>
-        <div class="slider-cta">
-          <a class="btn btn-primary" href="https://hdfund.org/urgent-appeals/pakistan-floods/" target="_blank" rel="noopener">Learn More</a>
-          <a class="btn btn-light" href="#projects">Learn More</a>
-        </div>
-      </div>
+            <div class="slider-badge" style="background-color: #006847;">
+              <svg class="badge-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20"
+                fill="none">
+                <path
+                  d="M5.16 15.8333C5.042 15.8333 4.943 15.7933 4.863 15.7133C4.783 15.6333 4.743 15.5342 4.743 15.4158C4.743 15.2975 4.783 15.1986 4.863 15.1192C4.943 15.0397 5.042 15 5.16 15H5.965L7.53 9.71333C7.609 9.41611 7.77 9.18111 8.012 9.00833C8.255 8.83555 8.522 8.74944 8.814 8.75H11.186C11.479 8.75 11.746 8.83611 11.988 9.00833C12.23 9.18111 12.391 9.41611 12.47 9.71333L14.035 15H14.84C14.958 15 15.057 15.04 15.137 15.12C15.217 15.2 15.257 15.2992 15.257 15.4175C15.257 15.5358 15.217 15.6347 15.137 15.7142C15.057 15.7936 14.958 15.8333 14.84 15.8333H5.16Z"
+                  fill="white" />
+              </svg>
+              <span>Rebuilding Gaza</span>
+            </div>
+            <h1 class="slider-title">Rebuilding Gaza</h1>
+            <p class="slider-desc">
+              Every family deserves a safe home, clean water, and a future filled with hope. Discover how HDFs Rebuild
+              Gaza initiative is turning compassion into action — one home, one life, one community at a time. </p>
+            <div class="slider-cta">
+              <a class="btn btn-primary" href="https://hdfund.org/urgent-appeals/pakistan-floods/" target="_blank"
+                rel="noopener">Learn More<i class="fa-solid fa-chevron-right  arrow-gap"></i></a>
+              <a class="btn btn-light" href="#projects">Learn More</a>
+            </div>
+          </div>
         </div>
       </div>
 
       <!-- Overlay content (middle-left) -->
-      
+
 
       <!-- Arrow navigation (bottom-right) -->
       <div class="slider-nav">
         <button class="slider-arrow prev" aria-label="Previous slide">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" />
+          </svg>
         </button>
         <button class="slider-arrow next" aria-label="Next slide">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" />
+          </svg>
         </button>
       </div>
     </div>
@@ -492,128 +520,304 @@ Every family deserves a safe home, clean water, and a future filled with hope. D
   </form>
 
   <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Transforming Lives Through Compassion</h1>
-      <p>Join us in bringing hope, dignity, and sustainable change to communities worldwide</p>
-      <button class="cta-btn" onclick="openDonateModal()">Make a Difference Today</button>
+  <section class="impact-section">
+    <div class="impact-container">
+
+      <div class="impact-content">
+        <div class="impact-header">
+          <span class="subtitle">Empowering lives</span>
+          <h2>Our Global Impact</h2>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="icon-box">
+              <i class="fa-solid fa-users"></i>
+            </div>
+            <h3>2M+</h3>
+            <p>Lives impacted</p>
+          </div>
+
+          <div class="stat-item">
+            <div class="icon-box">
+              <i class="fa-solid fa-utensils"></i>
+            </div>
+            <h3>1M+</h3>
+            <p>Hot meals provided</p>
+          </div>
+
+          <div class="stat-item">
+            <div class="icon-box">
+              <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <h3>2000+</h3>
+            <p>Students sponsored</p>
+          </div>
+
+          <div class="stat-item">
+            <div class="icon-box">
+              <i class="fa-solid fa-hands-holding-child"></i>
+            </div>
+            <h3>900+</h3>
+            <p>Orphans sponsored</p>
+          </div>
+
+          <div class="stat-item">
+            <div class="icon-box">
+              <i class="fa-solid fa-droplet"></i>
+            </div>
+            <h3>12.1M+</h3>
+            <p>Liters of water distributed</p>
+          </div>
+
+          <div class="stat-item">
+            <div class="icon-box">
+              <i class="fa-solid fa-hand-holding-heart"></i>
+            </div>
+            <h3>20+</h3>
+            <p>Countries served</p>
+          </div>
+        </div>
+
+        <a href="#" class="donate-btn-nav donate-btn-large" style="text-decoration: none;">About Us <i
+            class="fa-solid fa-chevron-right  arrow-gap"></i></a>
+      </div>
+
+      <div class="impact-media">
+        <div class="video-wrapper">
+          <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=1000&auto=format&fit=crop"
+            alt="Impact Video Thumbnail">
+        </div>
+      </div>
+
     </div>
   </section>
 
-  <!-- Programs Section -->
-  <section id="programs" class="programs-section">
-    <div class="container">
-      <h2 class="section-title">Our Programs</h2>
-      <p class="section-subtitle">Explore all our programs and learn how we're transforming whole communities by
-        providing sustainable water solutions, brightening children's futures, empowering people with livelihoods, and
-        supporting schools and clinics.</p>
+  <section class="giving-basket-section">
+    <div class="giving-basket-header">
+      <h2>Create Your Giving Basket. Add Gifts That Change Lives.</h2>
+      <a href="#" class="view-all">View All</a>
+    </div>
 
-      <div class="programs-grid">
-        <!-- Rapid Response -->
-        <div class="program-card">
-          <div class="program-icon">🚨</div>
-          <h3>Rapid Response & Emergency Relief</h3>
-          <p>In times of crisis, every moment counts. HFF's Rapid Response teams act swiftly to deliver life-saving
-            assistance to families affected by war, displacement, or natural disasters. From emergency food and clean
-            water to temporary shelter and essential supplies, we stand beside vulnerable communities when they need it
-            most.</p>
-          <p>Your generosity ensures that no family is forgotten in moments of hardship—bringing them safety, dignity,
-            and compassion. Across Gaza, Syria, Yemen, Sudan, Pakistan, and other regions, your support helps restore
-            hope when it's needed the most.</p>
-          <button class="program-btn" onclick="viewProjects('emergency')">VIEW ALL PROJECTS</button>
+    <div class="giving-basket-carousel">
+      <div class="carousel-track">
+        <div class="gift-card">
+          <img src="https://hdfund.org/wp-content/uploads/2025/04/Support-Orphans.jpg" alt="Gaza Shelter">
+          <div class="card-content">
+            <div class="category category-shelter">
+              <span class="dot"></span> SHELTER
+            </div>
+            <h3>Gaza Shelter</h3>
+            <a href="#" class="donate-btn">DONATE</a>
+          </div>
         </div>
 
-        <!-- Medical Aid -->
-        <div class="program-card">
-          <div class="program-icon">🏥</div>
-          <h3>Medical Aid</h3>
-          <p>Access to healthcare is not a privilege, it is a right. At HFF, we bring medical care to those who would
-            otherwise go without. Through mobile clinics, surgical interventions, and essential medicine distribution,
-            we protect the health and lives of families in crisis.</p>
-          <p>From cataract and cleft lip surgeries to trauma care and maternal health support, our programs provide both
-            immediate relief and long-term healing. Every treatment is more than medical care, it is dignity restored,
-            independence regained, and hope renewed.</p>
-          <button class="program-btn" onclick="viewProjects('medical')">VIEW ALL PROJECTS</button>
+        <div class="gift-card">
+          <img src="https://hdfund.org/wp-content/uploads/2025/04/Gaza-Shelter-1.jpg" alt="Hot Meals">
+          <div class="card-content">
+            <div class="category category-food">
+              <span class="dot"></span> FOOD AND SECURITY
+            </div>
+            <h3>Hot Meals</h3>
+            <a href="#" class="donate-btn">DONATE</a>
+          </div>
         </div>
 
-        <!-- Education -->
-        <div class="program-card">
-          <div class="program-icon">📚</div>
-          <h3>Education & Opportunity</h3>
-          <p>Education is the foundation for ending poverty and creating hope. At HFF, we invest in brighter futures by
-            giving children and youth in refugee camps, conflict zones, and marginalized areas access to quality
-            learning opportunities.</p>
-          <p>Through scholarships, safe learning centers, vocational programs, and leadership training, we empower young
-            people with the knowledge and skills to build independent, meaningful lives. With a special focus on girls,
-            refugees, and first-generation learners, we strive to ensure that every child has the chance to learn, grow,
-            and succeed.</p>
-          <button class="program-btn" onclick="viewProjects('education')">VIEW ALL PROJECTS</button>
+        <div class="gift-card">
+          <img src="https://hdfund.org/wp-content/uploads/2025/04/Global-Scholarship.jpg" alt="Support Orphans">
+          <div class="card-content">
+            <div class="category category-orphan">
+              <span class="dot"></span> ORPHAN SUPPORT
+            </div>
+            <h3>Support Orphans</h3>
+            <a href="#" class="donate-btn">DONATE</a>
+          </div>
         </div>
 
-        <!-- Food Security -->
-        <div class="program-card">
-          <div class="program-icon">🍽️</div>
-          <h3>Food Security</h3>
-          <p>Hunger strips families of their strength, dignity, and hope. At HFF, we fight hunger by providing reliable
-            access to nutritious meals for millions each year. Through emergency food distributions, hot meals, Ramadan
-            packages, and Qurbani shares, we bring essential nourishment to those who need it most.</p>
-          <p>Our One Ummah, One Plate initiative unites communities through the simple yet powerful act of sharing food.
-            Every meal or food basket goes beyond feeding—it restores dignity, strengthens resilience, and renews faith
-            in a caring Ummah that stands together.</p>
-          <button class="program-btn" onclick="viewProjects('food')">VIEW ALL PROJECTS</button>
+        <div class="gift-card">
+          <img src="https://hdfund.org/wp-content/uploads/2025/04/Hot-Meals.jpg" alt="Global Scholarship">
+          <div class="card-content">
+            <div class="category category-education">
+              <span class="dot"></span> EDUCATION
+            </div>
+            <h3>Global Scholarship</h3>
+            <a href="#" class="donate-btn">DONATE</a>
+          </div>
         </div>
 
-        <!-- Shelter -->
-        <div class="program-card">
-          <div class="program-icon">🏠</div>
-          <h3>Shelter & Seasonal Support</h3>
-          <p>Each season brings new hardships that struggling families cannot face alone. At HFF, we work to protect
-            vulnerable communities from extreme heat, heavy rains, and freezing winters by providing shelter, warm
-            clothing, blankets, and heating essentials in colder months—along with clean water and vital aid during the
-            summer.</p>
-          <p>Across Morocco, Yemen, Gaza, Pakistan, and Syrian refugee camps, your support offers families safety,
-            comfort, and the reassurance that they are never forgotten, no matter the season.</p>
-          <button class="program-btn" onclick="viewProjects('shelter')">VIEW ALL PROJECTS</button>
+        <div class="gift-card">
+          <img src="https://hdfund.org/wp-content/uploads/2025/04/ENT-Surgeries.jpg" alt="ENT Surgeries">
+          <div class="card-content">
+            <div class="category category-medical">
+              <span class="dot"></span> MEDICAL AND HEALTH
+            </div>
+            <h3>ENT Surgeries</h3>
+            <a href="#" class="donate-btn">DONATE</a>
+          </div>
         </div>
 
-        <!-- Water Infrastructure -->
-        <div class="program-card">
-          <div class="program-icon">💧</div>
-          <h3>Water Infrastructure</h3>
-          <p>Every drop of clean water holds the power to restore health, dignity, and hope for the future. At HFF, we
-            develop and rehabilitate sustainable water systems that bring long-term relief to communities in need.</p>
-          <p>From Gaza to Bangladesh, Somalia, Sudan, Indonesia, Pakistan, Nepal, Kenya, and beyond, your support funds
-            solar-powered wells, repaired boreholes, and durable water networks. These projects do more than provide
-            drinking water—they prevent disease, reduce the burden on women and children, and help communities flourish.
-          </p>
-          <button class="program-btn" onclick="viewProjects('water')">VIEW ALL PROJECTS</button>
+        <div class="gift-card">
+          <img src="https://hdfund.org/wp-content/uploads/2025/04/Gaza-Shelter-1.jpg" alt="Gaza Shelter">
+          <div class="card-content">
+            <div class="category category-shelter">
+              <span class="dot"></span> SHELTER
+            </div>
+            <h3>Gaza Shelter</h3>
+            <a href="#" class="donate-btn">DONATE</a>
+          </div>
         </div>
 
-        <!-- Care for Orphans -->
-        <div class="program-card">
-          <div class="program-icon">👶</div>
-          <h3>Care for Orphans</h3>
-          <p>Caring for orphans means more than providing essentials—it's about giving children the opportunity to grow,
-            learn, and heal. At HFF, we support orphaned children across Palestine, Syria, Kenya, Pakistan, Somalia,
-            Yemen, and beyond with nutritious food, quality education, healthcare, and secure housing.</p>
-          <p>Every contribution helps restore dignity, inspire hope, and build a future where every child is valued,
-            supported, and given the chance to thrive.</p>
-          <button class="program-btn" onclick="viewProjects('orphans')">VIEW ALL PROJECTS</button>
+        <div class="gift-card">
+          <img src="https://hdfund.org/wp-content/uploads/2025/04/Global-Scholarship.jpg" alt="Support Orphans">
+          <div class="card-content">
+            <div class="category category-orphan">
+              <span class="dot"></span> ORPHAN SUPPORT
+            </div>
+            <h3>Support Orphans</h3>
+            <a href="#" class="donate-btn">DONATE</a>
+          </div>
         </div>
 
-        <!-- Faith-Based Giving -->
-        <div class="program-card">
-          <div class="program-icon">🕌</div>
-          <h3>Faith-Based Giving</h3>
-          <p>Faith-driven giving is a meaningful way to fulfill our responsibility toward others. At HFF, we honor
-            Fidya, Kaffarah, and Fitra by turning these contributions into vital, life-saving support. Through your
-            generosity, families receive nourishment, vulnerable individuals gain care, and dignity is restored in areas
-            facing hardship.</p>
-          <p>Guided by compassion and accountability, these offerings reach communities in Gaza, Syria, Yemen, Sudan,
-            and beyond, bringing hope to those who need it most.</p>
-          <button class="program-btn" onclick="viewProjects('faith')">VIEW ALL PROJECTS</button>
+      </div>
+    </div>
+
+    <div class="carousel-nav">
+      <button class="nav-arrow prev-arrow">
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+      <button class="nav-arrow next-arrow">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="projects-section">
+    <div class="section-header">
+      <div class="header-text">
+        <h2>Support High-Impact Projects</h2>
+        <p>Give to a wide range of essential services — clean water, food, medical care, education, and shelter.</p>
+      </div>
+      <a href="#" class="view-all-link">VIEW ALL</a>
+    </div>
+
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="card-image-wrapper">
+          <img src="https://hdfund.org/wp-content/uploads/2025/04/ENT-Surgeries.jpg"
+            alt="Gaza Support">
+          <div class="card-overlay">
+            <div class="title-graphic">
+              <span class="tag-red">Gaza</span>
+              <span class="text-large">Support</span>
+            </div>
+          </div>
+          <a href="#" class="arrow-icon-circle"><i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="card-body">
+          <span class="category-label">EMERGENCY RELIEF</span>
+          <h3>Gaza Relief</h3>
+
+          <div class="donation-amounts">
+            <button class="amount-btn active">$50</button>
+            <button class="amount-btn">100</button>
+            <button class="amount-btn">500</button>
+            <div class="custom-amount">
+              <input type="number" value="50">
+            </div>
+          </div>
+
+          <p class="description">Join hands with the Human Development Fund (HDF) to support our brothers and sisters in
+            Gaza</p>
+
+          <div class="frequency-selector">
+            <select>
+              <option>Once</option>
+              <option>Monthly</option>
+            </select>
+          </div>
+
+          <button class="donate-btn-full">DONATE <i class="fa-solid fa-chevron-right"></i></button>
         </div>
       </div>
+
+      <div class="project-card">
+        <div class="card-image-wrapper">
+          <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=1000&auto=format&fit=crop"
+            alt="Seeds of Hope">
+          <div class="card-overlay">
+            <div class="title-graphic center-text">
+              <span class="text-small">Seeds of</span>
+              <span class="text-highlight-yellow">HOPE</span>
+            </div>
+          </div>
+          <a href="#" class="arrow-icon-circle"><i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="card-body">
+          <span class="category-label">EDUCATION</span>
+          <h3>Seeds Of Hope</h3>
+
+          <div class="donation-amounts">
+            <button class="amount-btn active">$850</button>
+            <button class="amount-btn">2550</button>
+            <button class="amount-btn">4250</button>
+            <div class="custom-amount">
+              <input type="number" value="850">
+            </div>
+          </div>
+
+          <p class="description">Your generosity of $850 sponsors an entire year of education for a child in Gaza.</p>
+
+          <div class="frequency-selector">
+            <select>
+              <option>Once</option>
+              <option>Monthly</option>
+            </select>
+          </div>
+
+          <button class="donate-btn-full">DONATE <i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="card-image-wrapper">
+          <img src="https://hdfund.org/wp-content/uploads/2025/04/Gaza-Shelter.jpg"
+            alt="Gaza Shelter">
+          <div class="card-overlay">
+            <div class="title-graphic">
+              <span class="tag-red">Gaza</span>
+              <span class="text-large">Shelter Tents</span>
+            </div>
+          </div>
+          <a href="#" class="arrow-icon-circle"><i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="card-body">
+          <span class="category-label">SHELTER</span>
+          <h3>Gaza Shelter Tents</h3>
+
+          <div class="donation-amounts">
+            <button class="amount-btn active">$50</button>
+            <button class="amount-btn">100</button>
+            <button class="amount-btn">500</button>
+            <div class="custom-amount">
+              <input type="number" value="50">
+            </div>
+          </div>
+
+          <p class="description">Your generous donation can furnish a safe haven for a family in Gaza.</p>
+
+          <div class="frequency-selector">
+            <select>
+              <option>Once</option>
+              <option>Monthly</option>
+            </select>
+          </div>
+
+          <button class="donate-btn-full">DONATE <i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+      </div>
+
     </div>
   </section>
 
