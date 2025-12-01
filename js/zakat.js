@@ -3,20 +3,20 @@
 
   function openZakatCalculator() {
     if (!zakatModal) createZakatCalculatorModal();
-    zakatModal.classList.add('active');
-    document.body.style.overflow = 'hidden';
+    zakatModal.classList.add("active");
+    document.body.style.overflow = "hidden";
   }
   function closeZakatCalculator() {
     if (zakatModal) {
-      zakatModal.classList.remove('active');
-      document.body.style.overflow = '';
+      zakatModal.classList.remove("active");
+      document.body.style.overflow = "";
       resetZakatCalculator();
     }
   }
 
   function createZakatCalculatorModal() {
-    zakatModal = document.createElement('div');
-    zakatModal.className = 'zakat-modal';
+    zakatModal = document.createElement("div");
+    zakatModal.className = "zakat-modal";
     zakatModal.innerHTML = `
       <div class="modal-overlay" onclick="closeZakatCalculator()"></div>
       <div class="modal-content zakat-modal-content">
@@ -96,30 +96,38 @@
     const goldPricePerGram = 57.0;
     const silverPricePerGram = 0.57;
 
-    const goldWeightInput = document.getElementById('goldWeight');
-    const goldValueInput = document.getElementById('goldValue');
-    const silverWeightInput = document.getElementById('silverWeight');
-    const silverValueInput = document.getElementById('silverValue');
+    const goldWeightInput = document.getElementById("goldWeight");
+    const goldValueInput = document.getElementById("goldValue");
+    const silverWeightInput = document.getElementById("silverWeight");
+    const silverValueInput = document.getElementById("silverValue");
 
-    const zakatInputs = document.querySelectorAll('.zakat-input');
-    zakatInputs.forEach(input => {
-      input.addEventListener('keydown', function (e) {
-        if (e.key === '-' || e.key === 'e' || e.key === 'E') e.preventDefault();
+    const zakatInputs = document.querySelectorAll(".zakat-input");
+    zakatInputs.forEach((input) => {
+      input.addEventListener("keydown", function (e) {
+        if (e.key === "-" || e.key === "e" || e.key === "E") e.preventDefault();
       });
-      input.addEventListener('input', function () { if (this.value < 0) this.value = 0; });
-      input.addEventListener('blur', function () { if (this.value < 0 || this.value === '') this.value = 0; });
+      input.addEventListener("input", function () {
+        if (this.value < 0) this.value = 0;
+      });
+      input.addEventListener("blur", function () {
+        if (this.value < 0 || this.value === "") this.value = 0;
+      });
     });
 
     if (goldWeightInput) {
-      goldWeightInput.addEventListener('input', function () {
+      goldWeightInput.addEventListener("input", function () {
         const weight = parseFloat(this.value) || 0;
-        goldValueInput.value = (Math.max(0, weight) * goldPricePerGram).toFixed(2);
+        goldValueInput.value = (Math.max(0, weight) * goldPricePerGram).toFixed(
+          2
+        );
       });
     }
     if (silverWeightInput) {
-      silverWeightInput.addEventListener('input', function () {
+      silverWeightInput.addEventListener("input", function () {
         const weight = parseFloat(this.value) || 0;
-        silverValueInput.value = (Math.max(0, weight) * silverPricePerGram).toFixed(2);
+        silverValueInput.value = (
+          Math.max(0, weight) * silverPricePerGram
+        ).toFixed(2);
       });
     }
   }
@@ -130,32 +138,45 @@
       return value < 0 ? 0 : value;
     };
 
-    const cashHome = getPositiveValue('cashHome');
-    const bankAccounts = getPositiveValue('bankAccounts');
-    const goldValue = getPositiveValue('goldValue');
-    const silverValue = getPositiveValue('silverValue');
-    const otherPreciousMetals = getPositiveValue('otherPreciousMetals');
-    const stocks = getPositiveValue('stocks');
-    const businessAssets = getPositiveValue('businessAssets');
-    const investmentProperties = getPositiveValue('investmentProperties');
-    const retirementFunds = getPositiveValue('retirementFunds');
-    const loansGiven = getPositiveValue('loansGiven');
-    const debts = getPositiveValue('debts');
-    const unpaidBills = getPositiveValue('unpaidBills');
+    const cashHome = getPositiveValue("cashHome");
+    const bankAccounts = getPositiveValue("bankAccounts");
+    const goldValue = getPositiveValue("goldValue");
+    const silverValue = getPositiveValue("silverValue");
+    const otherPreciousMetals = getPositiveValue("otherPreciousMetals");
+    const stocks = getPositiveValue("stocks");
+    const businessAssets = getPositiveValue("businessAssets");
+    const investmentProperties = getPositiveValue("investmentProperties");
+    const retirementFunds = getPositiveValue("retirementFunds");
+    const loansGiven = getPositiveValue("loansGiven");
+    const debts = getPositiveValue("debts");
+    const unpaidBills = getPositiveValue("unpaidBills");
 
-    const totalAssets = cashHome + bankAccounts + goldValue + silverValue + otherPreciousMetals + stocks + businessAssets + investmentProperties + retirementFunds + loansGiven;
+    const totalAssets =
+      cashHome +
+      bankAccounts +
+      goldValue +
+      silverValue +
+      otherPreciousMetals +
+      stocks +
+      businessAssets +
+      investmentProperties +
+      retirementFunds +
+      loansGiven;
     const totalLiabilities = debts + unpaidBills;
     const netWealth = Math.max(0, totalAssets - totalLiabilities);
     const zakatDue = netWealth * 0.025;
 
     const nisabThreshold = 350;
 
-    document.getElementById('totalWealth').textContent = '$' + totalAssets.toFixed(2);
-    document.getElementById('totalLiabilities').textContent = '$' + totalLiabilities.toFixed(2);
-    document.getElementById('netWealth').textContent = '$' + netWealth.toFixed(2);
-    document.getElementById('zakatDue').textContent = '$' + zakatDue.toFixed(2);
+    document.getElementById("totalWealth").textContent =
+      "$" + totalAssets.toFixed(2);
+    document.getElementById("totalLiabilities").textContent =
+      "$" + totalLiabilities.toFixed(2);
+    document.getElementById("netWealth").textContent =
+      "$" + netWealth.toFixed(2);
+    document.getElementById("zakatDue").textContent = "$" + zakatDue.toFixed(2);
 
-    const statusDiv = document.getElementById('zakatStatus');
+    const statusDiv = document.getElementById("zakatStatus");
     if (netWealth >= nisabThreshold) {
       statusDiv.innerHTML = `
         <div class="status-success">
@@ -163,7 +184,9 @@
             <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
             <polyline points="22 4 12 14.01 9 11.01"></polyline>
           </svg>
-          <p>Your wealth is above the Nisab threshold. Zakat is due: <strong>$${zakatDue.toFixed(2)}</strong></p>
+          <p>Your wealth is above the Nisab threshold. Zakat is due: <strong>$${zakatDue.toFixed(
+            2
+          )}</strong></p>
         </div>`;
     } else {
       statusDiv.innerHTML = `
@@ -177,36 +200,41 @@
         </div>`;
     }
 
-    document.getElementById('zakatResults').style.display = 'block';
-    document.getElementById('zakatResults').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    document.getElementById("zakatResults").style.display = "block";
+    document
+      .getElementById("zakatResults")
+      .scrollIntoView({ behavior: "smooth", block: "nearest" });
   }
 
   function payZakat() {
-    const zakatAmount = parseFloat(document.getElementById('zakatDue').textContent.replace('$', ''));
+    const zakatAmount = parseFloat(
+      document.getElementById("zakatDue").textContent.replace("$", "")
+    );
     if (zakatAmount <= 0) {
-      alert('No Zakat amount to pay');
+      alert("No Zakat amount to pay");
       return;
     }
     closeZakatCalculator();
     setTimeout(() => {
-      window.openDonateModal('zakat');
-      const modalAmount = document.getElementById('modalAmount');
+      window.openDonateModal("zakat");
+      const modalAmount = document.getElementById("modalAmount");
       if (modalAmount) modalAmount.value = zakatAmount.toFixed(2);
     }, 300);
   }
 
   function printZakatReport() {
-    const totalWealth = document.getElementById('totalWealth').textContent;
-    const totalLiabilities = document.getElementById('totalLiabilities').textContent;
-    const netWealth = document.getElementById('netWealth').textContent;
-    const zakatDue = document.getElementById('zakatDue').textContent;
+    const totalWealth = document.getElementById("totalWealth").textContent;
+    const totalLiabilities =
+      document.getElementById("totalLiabilities").textContent;
+    const netWealth = document.getElementById("netWealth").textContent;
+    const zakatDue = document.getElementById("zakatDue").textContent;
 
-    const printWindow = window.open('', '_blank');
+    const printWindow = window.open("", "_blank");
     printWindow.document.write(`
       <!DOCTYPE html>
       <html><head><title>Zakat Calculation Report</title>
       <style>
-        body{font-family:Arial,sans-serif;padding:40px;max-width:800px;margin:0 auto;}
+        body{font-family:"Outfit", sans-serif;padding:40px;max-width:800px;margin:0 auto;}
         h1{color:#1a5245;text-align:center;margin-bottom:30px;}
         .report-date{text-align:right;color:#666;margin-bottom:30px;}
         table{width:100%;border-collapse:collapse;margin:20px 0;}
@@ -237,10 +265,10 @@
   }
 
   function resetZakatCalculator() {
-    const form = document.getElementById('zakatCalculatorForm');
+    const form = document.getElementById("zakatCalculatorForm");
     if (form) form.reset();
-    const results = document.getElementById('zakatResults');
-    if (results) results.style.display = 'none';
+    const results = document.getElementById("zakatResults");
+    if (results) results.style.display = "none";
   }
 
   window.openZakatCalculator = openZakatCalculator;

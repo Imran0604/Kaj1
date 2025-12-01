@@ -25,10 +25,9 @@ if ($session_id) {
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">    <style>
         body {
-            font-family: "Rajdhani", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            font-family: "Outfit", sans-serif;
             font-weight: 500;
             margin: 0;
             padding: 0;
@@ -96,7 +95,7 @@ if ($session_id) {
         }
 
         h1 {
-            font-family: "Rajdhani", sans-serif;
+            font-family: "Outfit", sans-serif;
             font-weight: 700;
             font-size: 2.25rem;
             color: #1A5245;
