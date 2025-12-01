@@ -178,10 +178,14 @@
   }
 
   function initializeAuthListener() {
-    firebaseAuth.onAuthStateChanged((user) => {
-      currentUser = user;
-      if (user) updateUIForUser(user);
-      else updateUIForSignedOut();
+    firebaseAuth.onAuthStateChanged(user=>{
+      currentUser=user;
+      if (user) updateUIForUser(user); else updateUIForSignedOut();
+      
+      // Update donation modal if it's open
+      if (window.updateGoogleButtonVisibility) {
+        window.updateGoogleButtonVisibility();
+      }
     });
   }
 

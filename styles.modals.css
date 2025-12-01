@@ -1,0 +1,7 @@
+/* Modal (generic) */
+.modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 2000; }
+.modal.active { display: flex; align-items: center; justify-content: center; } /* Ensure .active is used */
+
+/* Specific modals can have additional styles if needed */
+#donateModal { /* Styles for donation modal */ }
+#loginModal { /* Styles for login modal */ }

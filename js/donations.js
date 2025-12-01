@@ -1,15 +1,19 @@
 (function () {
   function openDonateModal(type) {
     const modal = document.getElementById('donateModal');
-    if (modal) modal.classList.add('open');
+    if (modal) modal.classList.add('active'); // Changed from 'open' to 'active'
     if (type) {
       const sel = document.getElementById('donationType');
       if (sel) sel.value = type;
     }
+    
+    // Hide/show Google button based on auth state
+    updateGoogleButtonVisibility();
   }
+  
   function closeDonateModal() {
     const modal = document.getElementById('donateModal');
-    if (modal) modal.classList.remove('open');
+    if (modal) modal.classList.remove('active'); // Changed from 'open' to 'active'
   }
   function viewProjects() {
     const el = document.getElementById('projects');
@@ -125,6 +129,36 @@
     });
   }
 
+  function updateGoogleButtonVisibility() {
+    const googleBtn = document.querySelector('#donateModal .google-auth-btn');
+    const signinNote = document.querySelector('#donateModal .signin-note');
+    
+    // Check if user is logged in (from Firebase auth or other auth system)
+    if (window.firebaseAuth && window.firebaseAuth.currentUser) {
+      // User is logged in - hide Google button
+      if (googleBtn) googleBtn.style.display = 'none';
+      if (signinNote) signinNote.style.display = 'none';
+      
+      // Optionally pre-fill donor info
+      const currentUser = window.firebaseAuth.currentUser;
+      const donorName = document.getElementById('donorName');
+      const donorEmail = document.getElementById('donorEmail');
+      
+      if (donorName && currentUser.displayName) {
+        donorName.value = currentUser.displayName;
+      }
+      if (donorEmail && currentUser.email) {
+        donorEmail.value = currentUser.email;
+      }
+    } else {
+      // User is not logged in - show Google button
+      if (googleBtn) googleBtn.style.display = 'flex';
+      if (signinNote) signinNote.style.display = 'block';
+      donorName.value = "";
+      donorEmail.value = "";
+    }
+  }
+
   // Inject CSS for cancellation notification
   const style = document.createElement('style');
   style.textContent = `
@@ -162,4 +196,5 @@
   window.showCancelNotification = showCancelNotification;
   window.handleQuickDonate = handleQuickDonate;
   window.processDonation = processDonation;
+  window.updateGoogleButtonVisibility = updateGoogleButtonVisibility;
 })();
